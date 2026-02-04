@@ -181,31 +181,9 @@ php artisan serve
 
 ### Configuración de la Base de Datos
 
-1. Crea una base de datos llamada `serrainnova`
+1. Crea una base de datos llamada `inmobiliaria`
 2. Actualiza las credenciales en el archivo `.env`
 3. Ejecuta las migraciones con `php artisan migrate`
-
-### Configuración de Tailwind
-
-El archivo de configuración se encuentra en `tailwind.config.js`:
-
-```javascript
-module.exports = {
-  content: [
-    "./resources/**/*.blade.php",
-    "./resources/**/*.js",
-    "./resources/**/*.vue",
-  ],
-  theme: {
-    extend: {
-      colors: {
-        primary: '#4F46E5',
-        secondary: '#7C3AED',
-      }
-    },
-  },
-}
-```
 
 ---
 
@@ -215,21 +193,12 @@ module.exports = {
 
 ```bash
 # Terminal 1 - Backend
-php artisan serve
+composer run dev
 
 # Terminal 2 - Frontend
 npm run dev
 ```
 
-### Ejecutar tests
-
-```bash
-# Tests de PHP
-php artisan test
-
-# Tests de JavaScript
-npm run test
-```
 
 ### Compilar para producción
 
@@ -272,74 +241,13 @@ serrainnova/
 
 ---
 
-## 👥 Equipo
-
-<div align="center">
-
-| Avatar | Nombre | Rol | GitHub |
-|--------|--------|-----|--------|
-| 👨‍💻 | **[Nombre 1]** | Full Stack Developer | [@usuario1](#) |
-| 👩‍💻 | **[Nombre 2]** | Frontend Developer | [@usuario2](#) |
-| 👨‍💻 | **[Nombre 3]** | Backend Developer | [@usuario3](#) |
-| 👩‍💻 | **[Nombre 4]** | UI/UX Designer | [@usuario4](#) |
-
-</div>
-
----
-
-## 📸 Capturas de Pantalla
-
-<div align="center">
-
-### 🏠 Página Principal
-![Home](https://via.placeholder.com/800x400/4F46E5/ffffff?text=Captura+de+Pantalla+Home)
-
-### 📊 Dashboard
-![Dashboard](https://via.placeholder.com/800x400/7C3AED/ffffff?text=Captura+de+Pantalla+Dashboard)
-
-</div>
-
----
-
-## 🗺️ Roadmap
-
-- [x] Configuración inicial del proyecto
-- [x] Diseño de interfaz en Figma
-- [x] Implementación de autenticación
-- [ ] Sistema de permisos y roles
-- [ ] Panel de administración
-- [ ] API REST completa
-- [ ] Tests unitarios y de integración
-- [ ] Documentación completa
-- [ ] Despliegue en producción
-
----
-
-## 🤝 Contribuir
-
-Las contribuciones son bienvenidas. Para cambios importantes:
-
-1. Haz Fork del proyecto
-2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
-3. Commit tus cambios (`git commit -m 'Add: nueva característica increíble'`)
-4. Push a la rama (`git push origin feature/AmazingFeature`)
-5. Abre un Pull Request
-
----
 
 ## 📝 Licencia
 
-Este proyecto es un trabajo académico desarrollado para [Nombre de la Institución/Curso].
+Este proyecto es un trabajo académico desarrollado para Desarrollo de Aplicaciones Web.
 
 ---
 
-## 📞 Contacto
-
-**Proyecto SerraInnova** - [@serrainnova](#)
-
-Link del Proyecto: [https://github.com/tu-usuario/serrainnova](https://github.com/tu-usuario/serrainnova)
-
----
 
 <div align="center">
 
