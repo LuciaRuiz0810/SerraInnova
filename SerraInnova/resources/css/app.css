@@ -1,0 +1,101 @@
+@import 'tailwindcss';
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-display: 'Manrope', sans-serif;
+    --font-body: 'Manrope', sans-serif;
+    --font-sans: 'Manrope', sans-serif;
+    --color-primary: #13ec5b;
+    --color-forest: #0d1b12;
+    --color-leaf: #4c9a66;
+    --color-sand: #f4f1ea;
+    --color-background-light: #f8fcf9;
+    --color-background-dark: #102216;
+
+    --font-family-display: 'Manrope', sans-serif;
+}
+
+.organic-bg {
+    background-image: radial-gradient(circle at 10% 20%, rgba(19, 236, 91, 0.08) 0%, transparent 25%),
+        radial-gradient(circle at 90% 80%, rgba(76, 154, 102, 0.08) 0%, transparent 25%),
+        radial-gradient(circle at 50% 50%, rgba(13, 27, 18, 0.02) 0%, transparent 50%);
+}
+
+body {
+    font-family: 'Manrope', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Premium Effects */
+.glass-effect {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.glass-effect-dark {
+    background: rgba(16, 34, 22, 0.95);
+    backdrop-filter: blur(20px) saturate(180%);
+    -webkit-backdrop-filter: blur(20px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.glow-primary {
+    box-shadow: 0 0 20px rgba(19, 236, 91, 0.3),
+        0 0 40px rgba(19, 236, 91, 0.15);
+}
+
+.glow-primary-hover:hover {
+    box-shadow: 0 0 30px rgba(19, 236, 91, 0.5),
+        0 0 60px rgba(19, 236, 91, 0.25);
+    transform: translateY(-2px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+.float-animation {
+    animation: float 6s ease-in-out infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        background-position: -1000px 0;
+    }
+
+    100% {
+        background-position: 1000px 0;
+    }
+}
+
+.shimmer {
+    background: linear-gradient(90deg,
+            rgba(255, 255, 255, 0) 0%,
+            rgba(19, 236, 91, 0.3) 50%,
+            rgba(255, 255, 255, 0) 100%);
+    background-size: 1000px 100%;
+    animation: shimmer 3s infinite;
+}
+
+.gradient-text {
+    background: linear-gradient(135deg, #13ec5b 0%, #4c9a66 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
