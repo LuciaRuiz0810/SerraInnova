@@ -202,6 +202,96 @@
             </div>
         </section>
 
+        <!-- Calculator CTA Section -->
+        <section class="px-4 py-16 md:px-10 lg:px-20">
+            <div class="mx-auto max-w-[1200px]">
+                <div class="bg-gradient-to-br from-primary/10 via-leaf/10 to-forest/10 dark:from-primary/20 dark:via-leaf/20 dark:to-forest/20 rounded-3xl p-8 md:p-12 border-2 border-primary/30 relative overflow-hidden glow-primary">
+                    <!-- Background decoration -->
+                    <div class="absolute top-0 right-0 opacity-5 text-forest dark:text-primary scale-150">
+                        <span class="material-symbols-outlined text-[180px]">calculate</span>
+                    </div>
+                    
+                    <div class="relative z-10 grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+                        <!-- Left: Content -->
+                        <div class="space-y-6">
+                            <div class="inline-flex items-center gap-2 bg-primary/20 px-4 py-2 rounded-full">
+                                <span class="material-symbols-outlined text-forest dark:text-primary text-sm">new_releases</span>
+                                <span class="text-xs font-black text-forest dark:text-white uppercase tracking-wider">Herramienta Gratuita</span>
+                            </div>
+                            
+                            <h2 class="text-3xl md:text-4xl lg:text-5xl font-black text-forest dark:text-white leading-tight">
+                                ¿Cuánto puedes ahorrar en tu hogar?
+                            </h2>
+                            
+                            <p class="text-lg text-leaf dark:text-leaf/90">
+                                Descubre el potencial de ahorro energético de tu vivienda con nuestra calculadora inteligente. 
+                                Obtén recomendaciones personalizadas de rehabilitación en menos de 2 minutos.
+                            </p>
+                            
+                            <div class="grid grid-cols-2 gap-4">
+                                <div class="bg-white/60 dark:bg-background-dark/60 backdrop-blur-sm rounded-xl p-4 border border-leaf/20">
+                                    <div class="text-2xl font-black text-forest dark:text-primary mb-1">40-70%</div>
+                                    <div class="text-xs text-leaf font-semibold">Ahorro energético</div>
+                                </div>
+                                <div class="bg-white/60 dark:bg-background-dark/60 backdrop-blur-sm rounded-xl p-4 border border-leaf/20">
+                                    <div class="text-2xl font-black text-forest dark:text-primary mb-1">100%</div>
+                                    <div class="text-xs text-leaf font-semibold">Gratis y sin compromiso</div>
+                                </div>
+                            </div>
+                            
+                            <router-link 
+                                to="/calculadora"
+                                class="inline-flex items-center justify-center gap-3 bg-gradient-to-r from-forest to-leaf text-primary font-black py-5 px-8 rounded-xl hover:shadow-2xl hover:scale-105 transition-all duration-300 glow-primary-hover"
+                            >
+                                <span class="material-symbols-outlined text-2xl">calculate</span>
+                                Calcular Ahora
+                                <span class="material-symbols-outlined text-xl">arrow_forward</span>
+                            </router-link>
+                        </div>
+                        
+                        <!-- Right: Benefits -->
+                        <div class="space-y-4">
+                            <div class="bg-white/80 dark:bg-background-dark/80 backdrop-blur-sm rounded-2xl p-5 border-2 border-leaf/20 hover:border-primary/40 transition-all group">
+                                <div class="flex items-start gap-4">
+                                    <div class="size-12 rounded-xl bg-gradient-to-br from-primary/20 to-leaf/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                                        <span class="material-symbols-outlined text-forest dark:text-primary text-2xl">speed</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-forest dark:text-white mb-1">Resultados Instantáneos</h4>
+                                        <p class="text-sm text-leaf">Análisis completo en menos de 2 minutos</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white/80 dark:bg-background-dark/80 backdrop-blur-sm rounded-2xl p-5 border-2 border-leaf/20 hover:border-primary/40 transition-all group">
+                                <div class="flex items-start gap-4">
+                                    <div class="size-12 rounded-xl bg-gradient-to-br from-primary/20 to-leaf/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                                        <span class="material-symbols-outlined text-forest dark:text-primary text-2xl">psychology</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-forest dark:text-white mb-1">Recomendaciones Personalizadas</h4>
+                                        <p class="text-sm text-leaf">Servicios adaptados a tu vivienda específica</p>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="bg-white/80 dark:bg-background-dark/80 backdrop-blur-sm rounded-2xl p-5 border-2 border-leaf/20 hover:border-primary/40 transition-all group">
+                                <div class="flex items-start gap-4">
+                                    <div class="size-12 rounded-xl bg-gradient-to-br from-primary/20 to-leaf/20 flex items-center justify-center flex-shrink-0 group-hover:scale-110 transition-transform">
+                                        <span class="material-symbols-outlined text-forest dark:text-primary text-2xl">euro</span>
+                                    </div>
+                                    <div>
+                                        <h4 class="font-bold text-forest dark:text-white mb-1">Estimación de Costes</h4>
+                                        <p class="text-sm text-leaf">Conoce la inversión y el retorno esperado</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- CTA Section -->
         <section class="px-4 py-20 md:px-10 lg:px-20 bg-sand dark:bg-background-dark/20">
             <div class="mx-auto max-w-[1200px] bg-forest rounded-3xl p-8 md:p-16 flex flex-col md:flex-row items-center gap-12 overflow-hidden relative">

@@ -13,6 +13,10 @@
                 <router-link to="/" class="text-sm font-semibold hover:text-primary transition-colors">Inicio</router-link>
                 <router-link to="/propiedades" class="text-sm font-semibold hover:text-primary transition-colors">Comprar</router-link>
                 <router-link to="/propiedades?operacion=alquiler" class="text-sm font-semibold hover:text-primary transition-colors">Alquilar</router-link>
+                <router-link to="/calculadora" class="text-sm font-semibold hover:text-primary transition-colors flex items-center gap-1">
+                    <span class="material-symbols-outlined text-sm">calculate</span>
+                    Calculadora
+                </router-link>
                 <a href="#" class="text-sm font-semibold hover:text-primary transition-colors">Vender</a>
                 <a href="#" class="text-sm font-semibold hover:text-primary transition-colors">Contacto</a>
             </nav>
@@ -37,6 +41,10 @@
                     <router-link @click="closeMenu" to="/" class="text-sm font-semibold hover:text-primary transition-colors py-2">Inicio</router-link>
                     <router-link @click="closeMenu" to="/propiedades" class="text-sm font-semibold hover:text-primary transition-colors py-2">Comprar</router-link>
                     <router-link @click="closeMenu" to="/propiedades?operacion=alquiler" class="text-sm font-semibold hover:text-primary transition-colors py-2">Alquilar</router-link>
+                    <router-link @click="closeMenu" to="/calculadora" class="text-sm font-semibold hover:text-primary transition-colors py-2 flex items-center gap-2">
+                        <span class="material-symbols-outlined text-sm">calculate</span>
+                        Calculadora de Impacto
+                    </router-link>
                     <a @click="closeMenu" href="#" class="text-sm font-semibold hover:text-primary transition-colors py-2">Vender</a>
                     <a @click="closeMenu" href="#" class="text-sm font-semibold hover:text-primary transition-colors py-2">Contacto</a>
                     <router-link @click="closeMenu" to="/nosotros" class="text-sm font-semibold hover:text-primary transition-colors py-2">Nosotros</router-link>

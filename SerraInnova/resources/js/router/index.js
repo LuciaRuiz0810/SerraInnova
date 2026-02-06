@@ -4,6 +4,7 @@ import Properties from '../views/Properties.vue';
 import PropertyDetail from '../views/PropertyDetail.vue';
 import About from '../views/About.vue';
 import Agents from '../views/Agents.vue';
+import Calculator from '../views/Calculator.vue';
 
 const routes = [
     {
@@ -21,6 +22,11 @@ const routes = [
         name: 'PropertyDetail',
         component: PropertyDetail,
         props: true
+    },
+    {
+        path: '/calculadora',
+        name: 'Calculator',
+        component: Calculator,
     },
     {
         path: '/nosotros',
