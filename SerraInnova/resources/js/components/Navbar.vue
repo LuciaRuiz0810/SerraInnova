@@ -15,6 +15,8 @@
                     Calculadora
                 </router-link>
                 
+                <router-link to="/servicios" class="text-sm font-semibold hover:text-primary transition-colors">Servicios</router-link>
+                
                 <!-- Panel Admin: solo para administradores -->
                 <router-link v-if="user && user.tipo_usuario === 'administrador'" to="/admin" class="text-sm font-semibold hover:text-primary transition-colors flex items-center gap-1">
                     <span class="material-symbols-outlined text-sm">admin_panel_settings</span>
@@ -71,6 +73,8 @@
                         <span class="material-symbols-outlined text-sm">calculate</span>
                         Calculadora de Impacto
                     </router-link>
+                    
+                    <router-link @click="closeMenu" to="/servicios" class="text-sm font-semibold hover:text-primary transition-colors py-2">Servicios</router-link>
                     
                     <!-- Vender: solo para agentes -->
                     <router-link v-if="user && user.tipo_usuario === 'agente'" @click="closeMenu" to="/vender" class="text-sm font-semibold hover:text-primary transition-colors py-2">Vender</router-link>
