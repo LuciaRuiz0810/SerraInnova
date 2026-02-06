@@ -1,6 +1,6 @@
 <template>
     <div class="min-h-screen flex flex-col">
-        <Navbar />
+        <Navbar v-if="!hideNavAndFooter" />
         
         <!-- Contenido principal -->
         <main class="flex-grow">
@@ -12,13 +12,21 @@
             </router-view>
         </main>
 
-        <Footer />
+        <Footer v-if="!hideNavAndFooter" />
     </div>
 </template>
 
 <script setup>
+import { computed } from 'vue';
+import { useRoute } from 'vue-router';
 import Navbar from './components/Navbar.vue';
 import Footer from './components/Footer.vue';
+
+const route = useRoute();
+
+const hideNavAndFooter = computed(() => {
+    return ['Welcome', 'Login', 'Register'].includes(route.name);
+});
 </script>
 
 <style>

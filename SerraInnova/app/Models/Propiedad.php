@@ -35,12 +35,20 @@ class Propiedad extends Model
         'amueblado',
         'estado',
         'fotos',
-        'certificacion_energetica',
+        // Campos de sostenibilidad
+        'etiqueta_energetica',
         'huella_carbono_anual',
-        'tipo_energia',
-        'materiales_construccion',
-        'certificaciones',
-        'ahorro_co2_vs_estandar',
+        'aislamiento_termico',
+        'fuentes_energia',
+        'consumo_agua',
+        'materiales_sostenibles',
+        'certificacion_breeam',
+        'certificacion_leed',
+        'certificacion_passivhaus',
+        'ahorro_co2_estimado',
+        // Documentación
+        'certificado_energetico_pdf',
+        'otros_documentos',
     ];
 
     protected $casts = [
@@ -56,10 +64,17 @@ class Propiedad extends Model
         'amueblado' => 'boolean',
         'fecha_publicacion' => 'datetime',
         'fotos' => 'array',
+        // Campos de sostenibilidad
         'huella_carbono_anual' => 'decimal:2',
-        'ahorro_co2_vs_estandar' => 'decimal:2',
-        'materiales_construccion' => 'array',
-        'certificaciones' => 'array',
+        'ahorro_co2_estimado' => 'decimal:2',
+        'aislamiento_termico' => 'array',
+        'fuentes_energia' => 'array',
+        'consumo_agua' => 'array',
+        'materiales_sostenibles' => 'array',
+        'certificacion_breeam' => 'boolean',
+        'certificacion_leed' => 'boolean',
+        'certificacion_passivhaus' => 'boolean',
+        'otros_documentos' => 'array',
     ];
 
     // Relaciones
@@ -73,10 +88,7 @@ class Propiedad extends Model
         return $this->hasMany(Contrato::class, 'id_propiedad', 'id_propiedad');
     }
 
-    public function caracteristicasSostenibles(): HasOne
-    {
-        return $this->hasOne(CaracteristicaSostenible::class, 'propiedad_id', 'id_propiedad');
-    }
+
 
     // Scopes
     public function scopeDisponibles($query)
@@ -96,6 +108,6 @@ class Propiedad extends Model
             'F' => '#ff6347',
             'G' => '#dc143c',
         ];
-        return $colors[$this->certificacion_energetica] ?? '#cccccc';
+        return $colors[$this->etiqueta_energetica] ?? '#cccccc';
     }
 }

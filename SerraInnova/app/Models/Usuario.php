@@ -4,9 +4,11 @@ namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Relations\HasOne;
+use Laravel\Sanctum\HasApiTokens;
 
 class Usuario extends Authenticatable
 {
+    use HasApiTokens;
     protected $table = 'usuarios';
     protected $primaryKey = 'id_usuario';
     public $timestamps = false;
@@ -16,6 +18,7 @@ class Usuario extends Authenticatable
         'password',
         'tipo_usuario',
         'activo',
+        'foto_perfil',
     ];
 
     protected $hidden = [

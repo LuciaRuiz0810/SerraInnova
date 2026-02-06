@@ -17,8 +17,8 @@
 
                     <!-- Floating Search Bar -->
                     <div class="mt-12 w-full max-w-4xl glass-effect dark:glass-effect-dark rounded-3xl shadow-2xl p-4 md:p-6 flex flex-wrap gap-4 border-2 border-primary/10 glow-primary">
-                        <!-- Tabs for Search -->
-                        <div class="w-full flex border-b-2 border-primary/10 mb-4">
+                        <!-- Tabs for Search - Solo para clientes y no autenticados -->
+                        <div v-if="!user || user.tipo_usuario === 'cliente'" class="w-full flex border-b-2 border-primary/10 mb-4">
                             <button 
                                 @click="filters.operacion = 'venta'"
                                 class="px-6 py-2 text-sm font-bold border-b-2 text-forest dark:text-white"
@@ -31,6 +31,12 @@
                                 :class="filters.operacion === 'alquiler' ? 'border-primary' : 'border-transparent'">
                                 Alquilar
                             </button>
+                        </div>
+
+                        <!-- Título para vendedores -->
+                        <div v-if="user && user.tipo_usuario === 'agente'" class="w-full mb-2">
+                            <h3 class="text-lg font-bold text-forest dark:text-white">Buscar Propiedades</h3>
+                            <p class="text-sm text-leaf">Encuentra propiedades en el mercado</p>
                         </div>
 
                         <div class="flex flex-col gap-1.5 w-full md:flex-1 md:min-w-[200px]">
@@ -46,9 +52,11 @@
                             <div class="flex items-center gap-2 border-2 border-leaf/20 rounded-xl px-4 py-3 bg-background-light dark:bg-background-dark/50 hover:border-primary/40 transition-all duration-300 shadow-sm hover:shadow-md">
                                 <span class="material-symbols-outlined text-leaf text-sm">home</span>
                                 <select v-model="filters.tipo" class="bg-transparent border-none p-0 text-sm focus:ring-0 w-full appearance-none">
-                                    <option value="">Casas Eco</option>
-                                    <option value="Casa">Áticos</option>
-                                    <option value="Apartamento">Villas</option>
+                                    <option value="">Todas</option>
+                                    <option value="casa">Casa</option>
+                                    <option value="apartamento">Apartamento</option>
+                                    <option value="local">Local</option>
+                                    <option value="terreno">Terreno</option>
                                 </select>
                             </div>
                         </div>
@@ -91,112 +99,57 @@
                     </router-link>
                 </div>
                 <div class="flex flex-wrap -mx-4">
-                    <!-- Property Card 1 -->
-                    <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-8">
-                        <div class="group bg-white dark:bg-background-dark/40 rounded-3xl overflow-hidden shadow-xl border-2 border-leaf/5 hover:shadow-2xl hover:border-primary/30 hover:-translate-y-2 transition-all duration-500 h-full hover:scale-[1.02]">
-                        <div class="relative h-64 overflow-hidden">
-                            <div class="absolute top-4 left-4 z-10 bg-gradient-to-r from-primary to-leaf text-forest text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest shadow-lg glow-primary">
-                                Sostenible A++
-                            </div>
-                            <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCCET_VQhQ0iCl_oK4WIotHpT8a8LMtB9m0ByMHFJrPmvpNxkgynrQxydM-p5P6fF5z_p-VZyVA9Svdf4f1BQ_QQFHH9DaczSz2MyLECn5X9T5gwZcRX2Ctiy0NVmXzG7_jDWWxoJykQiHCjXqpx3Ab3ObLW3CyeYIWEEiTLqHLuupiqEfM7ZnegscWYcxnU8t7K9LJRFh8r8Y8WKZKWI2O0Vzzj8NemXGH-ruKiQJYaPCPI1X_ObTDLAa6tgaPGzCetDTz4uMSN3M" alt="Villa Natura II">
-                        </div>
-                        <div class="p-6">
-                            <div class="flex justify-between items-start mb-4">
-                                <h3 class="text-xl font-bold text-forest dark:text-white">Villa Natura II</h3>
-                                <p class="text-xl font-black text-leaf">425.000€</p>
-                            </div>
-                            <div class="flex items-center gap-1 text-leaf/70 text-sm mb-6">
-                                <span class="material-symbols-outlined text-sm">location_on</span>
-                                Serra de Tramuntana, Mallorca
-                            </div>
-                            <div class="flex justify-between border-t border-leaf/10 pt-4">
-                                <div class="flex items-center gap-2">
-                                    <span class="material-symbols-outlined text-leaf">square_foot</span>
-                                    <span class="text-sm font-semibold">180 m²</span>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <span class="material-symbols-outlined text-leaf">bed</span>
-                                    <span class="text-sm font-semibold">3 Hab</span>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <span class="material-symbols-outlined text-leaf">energy_savings_leaf</span>
-                                    <span class="text-sm font-semibold">Passivhaus</span>
-                                </div>
-                            </div>
-                        </div>
-                        </div>
+                    <!-- Loading State -->
+                    <div v-if="loading" class="w-full text-center py-12">
+                        <p class="text-leaf text-lg">Cargando propiedades...</p>
                     </div>
 
-                    <!-- Property Card 2 -->
-                    <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-8">
-                    <div class="group bg-white dark:bg-background-dark/40 rounded-2xl overflow-hidden shadow-lg border border-leaf/5 hover:shadow-2xl transition-all">
-                        <div class="relative h-64 overflow-hidden">
-                            <div class="absolute top-4 left-4 z-10 bg-gradient-to-r from-primary to-leaf text-forest text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest shadow-lg glow-primary">
-                                Obra Nueva
-                            </div>
-                            <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD_j-cUSKl6Ozt8U-3y10-1kQ8ciijZFTaGFnTyqV1yZ6IGKQYMWaYMLID9rLKWm8ykLTbDnOrj8d0tGObEAaUIibNgZPiQ3_qGnlcrKaxY78YbQxmXZecY-j4eBo4lvZzhtI08cotAHYu-faDoGNoKQ5bWGfo1q5GMfBt5bn9hXwrPMV0rb3GxYd_kJzNxL9KzjMq3ByYf5y1MJe_95DfCfcU4z2VX6zKCneIKPs7wx6IGjlw3JF_1MXHS1e_fTch_lj06tZh6ULs" alt="Refugio Forestal">
-                        </div>
-                        <div class="p-6">
-                            <div class="flex justify-between items-start mb-4">
-                                <h3 class="text-xl font-bold text-forest dark:text-white">Refugio Forestal</h3>
-                                <p class="text-xl font-black text-leaf">290.000€</p>
-                            </div>
-                            <div class="flex items-center gap-1 text-leaf/70 text-sm mb-6">
-                                <span class="material-symbols-outlined text-sm">location_on</span>
-                                Valle de Arán, Pirineos
-                            </div>
-                            <div class="flex justify-between border-t border-leaf/10 pt-4">
-                                <div class="flex items-center gap-2">
-                                    <span class="material-symbols-outlined text-leaf">square_foot</span>
-                                    <span class="text-sm font-semibold">120 m²</span>
+                    <!-- Property Cards - Dynamic -->
+                    <div v-else-if="featuredProperties.length > 0" 
+                         v-for="propiedad in featuredProperties" 
+                         :key="propiedad.id_propiedad"
+                         class="w-full md:w-1/2 lg:w-1/3 px-4 mb-8">
+                        <router-link :to="{ name: 'PropertyDetail', params: { id: propiedad.id_propiedad }}" class="block h-full">
+                            <div class="group bg-white dark:bg-background-dark/40 rounded-3xl overflow-hidden shadow-xl border-2 border-leaf/5 hover:shadow-2xl hover:border-primary/30 hover:-translate-y-2 transition-all duration-500 h-full hover:scale-[1.02]">
+                                <div class="relative h-64 overflow-hidden">
+                                    <div class="absolute top-4 left-4 z-10 bg-gradient-to-r from-primary to-leaf text-forest text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest shadow-lg glow-primary">
+                                        {{ propiedad.tipo_operacion === 'venta' ? 'En Venta' : 'En Alquiler' }}
+                                    </div>
+                                    <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
+                                         :src="getPropertyImage(propiedad)" 
+                                         :alt="propiedad.titulo">
                                 </div>
-                                <div class="flex items-center gap-2">
-                                    <span class="material-symbols-outlined text-leaf">bed</span>
-                                    <span class="text-sm font-semibold">2 Hab</span>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <span class="material-symbols-outlined text-leaf">solar_power</span>
-                                    <span class="text-sm font-semibold">Self-Suffic</span>
+                                <div class="p-6">
+                                    <div class="flex justify-between items-start mb-4">
+                                        <h3 class="text-xl font-bold text-forest dark:text-white line-clamp-1">{{ propiedad.titulo }}</h3>
+                                        <p class="text-xl font-black text-leaf whitespace-nowrap">{{ formatPrice(propiedad) }}</p>
+                                    </div>
+                                    <div class="flex items-center gap-1 text-leaf/70 text-sm mb-6">
+                                        <span class="material-symbols-outlined text-sm">location_on</span>
+                                        {{ propiedad.ciudad }}, {{ propiedad.provincia }}
+                                    </div>
+                                    <div class="flex justify-between border-t border-leaf/10 pt-4">
+                                        <div class="flex items-center gap-2">
+                                            <span class="material-symbols-outlined text-leaf">square_foot</span>
+                                            <span class="text-sm font-semibold">{{ parseInt(propiedad.metros_cuadrados) }} m²</span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <span class="material-symbols-outlined text-leaf">bed</span>
+                                            <span class="text-sm font-semibold">{{ propiedad.habitaciones }} Hab</span>
+                                        </div>
+                                        <div class="flex items-center gap-2">
+                                            <span class="material-symbols-outlined text-leaf">bathtub</span>
+                                            <span class="text-sm font-semibold">{{ propiedad.banos }} Baños</span>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        </div>
+                        </router-link>
                     </div>
 
-                    <!-- Property Card 3 -->
-                    <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-8">
-                    <div class="group bg-white dark:bg-background-dark/40 rounded-2xl overflow-hidden shadow-lg border border-leaf/5 hover:shadow-2xl transition-all">
-                        <div class="relative h-64 overflow-hidden">
-                            <div class="absolute top-4 left-4 z-10 bg-gradient-to-r from-primary to-leaf text-forest text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-widest shadow-lg glow-primary">
-                                Alquiler Eco
-                            </div>
-                            <img class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAG82VebUhKsUbt4qW0DnjRc9rie3Dmy3PkivoEmYb8rXKF3YLcEPacoR8_Fv8uikaE1S2-VOIdo88xDV_NL4nwjTmUI5aa0n2i6S6qB6xnf0uTbpQKyZ8eoYntvYswr8KsEyhaxk7hSH1HFYHC7qKiXPbZrxLeLykhTk8iA28tsuPB5r0tmCvNRcme0YfGAThpgfSi7pdI4V5tfg26-T_7VsjUsDJFktCvbN35fpNvwA20V1jl9IqUWcn72lEW2kqz6fDpKXxQTHg" alt="Loft Bio-Climático">
-                        </div>
-                        <div class="p-6">
-                            <div class="flex justify-between items-start mb-4">
-                                <h3 class="text-xl font-bold text-forest dark:text-white">Loft Bio-Climático</h3>
-                                <p class="text-xl font-black text-leaf">1.450€/mes</p>
-                            </div>
-                            <div class="flex items-center gap-1 text-leaf/70 text-sm mb-6">
-                                <span class="material-symbols-outlined text-sm">location_on</span>
-                                Maresme, Barcelona
-                            </div>
-                            <div class="flex justify-between border-t border-leaf/10 pt-4">
-                                <div class="flex items-center gap-2">
-                                    <span class="material-symbols-outlined text-leaf">square_foot</span>
-                                    <span class="text-sm font-semibold">95 m²</span>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <span class="material-symbols-outlined text-leaf">bed</span>
-                                    <span class="text-sm font-semibold">1 Hab</span>
-                                </div>
-                                <div class="flex items-center gap-2">
-                                    <span class="material-symbols-outlined text-leaf">water_drop</span>
-                                    <span class="text-sm font-semibold">Eco-Friendly</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <!-- Empty State -->
+                    <div v-else class="w-full text-center py-12">
+                        <p class="text-leaf text-lg">No hay propiedades destacadas disponibles en este momento.</p>
                     </div>
                 </div>
             </div>
@@ -328,8 +281,9 @@
 </template>
 
 <script setup>
-import { reactive } from 'vue';
+import { reactive, ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
+import axios from 'axios';
 
 const router = useRouter();
 
@@ -338,6 +292,48 @@ const filters = reactive({
     ubicacion: '',
     operacion: 'venta'
 });
+
+const featuredProperties = ref([]);
+const loading = ref(true);
+const user = ref(null);
+
+onMounted(() => {
+    fetchFeaturedProperties();
+    
+    // Cargar usuario desde localStorage
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+        user.value = JSON.parse(storedUser);
+    }
+});
+
+const fetchFeaturedProperties = async () => {
+    try {
+        loading.value = true;
+        const response = await axios.get('/propiedades/featured');
+        featuredProperties.value = response.data;
+    } catch (error) {
+        console.error('Error al cargar propiedades destacadas:', error);
+    } finally {
+        loading.value = false;
+    }
+};
+
+const formatPrice = (propiedad) => {
+    if (propiedad.tipo_operacion === 'venta' && propiedad.precio_venta) {
+        return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(propiedad.precio_venta);
+    } else if (propiedad.tipo_operacion === 'alquiler' && propiedad.precio_alquiler) {
+        return new Intl.NumberFormat('es-ES', { style: 'currency', currency: 'EUR', maximumFractionDigits: 0 }).format(propiedad.precio_alquiler) + '/mes';
+    }
+    return 'Precio no disponible';
+};
+
+const getPropertyImage = (propiedad) => {
+    if (propiedad.fotos && propiedad.fotos.length > 0) {
+        return propiedad.fotos[0];
+    }
+    return 'https://via.placeholder.com/400x300?text=Sin+Imagen';
+};
 
 const search = () => {
     router.push({ 
@@ -349,4 +345,8 @@ const search = () => {
         } 
     });
 };
+
+onMounted(() => {
+    fetchFeaturedProperties();
+});
 </script>

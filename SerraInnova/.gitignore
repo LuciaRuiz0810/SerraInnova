@@ -1,24 +1,50 @@
-*.log
+# System & OS
 .DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*~
+*.log
+*.tmp
+*.bak
+
+# Environment
 .env
 .env.backup
 .env.production
-.phpactor.json
-.phpunit.result.cache
-/.fleet
-/.idea
-/.nova
-/.phpunit.cache
-/.vscode
-/.zed
-/auth.json
+
+# Dependencies
+/vendor
 /node_modules
+
+# Build & Dist
 /public/build
 /public/hot
 /public/storage
 /storage/*.key
 /storage/pail
-/vendor
+
+# Laravel Framework
+/storage/framework/cache/data/*
+/storage/framework/views/*
+/storage/framework/sessions/*
+/storage/logs/*
+!/storage/framework/views/.gitignore
+!/storage/framework/sessions/.gitignore
+!/storage/framework/cache/.gitignore
+!/storage/logs/.gitignore
+.phpunit.result.cache
+
+# IDE & Editors
+/.idea
+/.vscode
+/.fleet
+/.zed
+/.nova
+.phpactor.json
+*.sublime-workspace
+auth.json
+
+# Vagrant
 Homestead.json
 Homestead.yaml
-Thumbs.db

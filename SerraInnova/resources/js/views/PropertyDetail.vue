@@ -25,21 +25,15 @@
             </div>
 
             <!-- Gallery -->
+            <!-- Gallery -->
             <div class="grid grid-cols-1 md:grid-cols-4 md:grid-rows-2 gap-4 h-[500px] mb-12 rounded-2xl overflow-hidden shadow-lg">
-                <div class="col-span-1 md:col-span-2 md:row-span-2 relative group">
-                    <img :src="getCoverImage(propiedad.fotos)" class="w-full h-full object-cover" alt="Main">
+                <!-- Main Image (First item, spans 2x2) -->
+                <div class="col-span-1 md:col-span-2 md:row-span-2 relative group cursor-pointer">
+                    <img :src="getGalleryImages(propiedad)[0]" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" alt="Main">
                 </div>
-                <div class="relative group overflow-hidden bg-gray-200">
-                    <img src="https://images.unsplash.com/photo-1512917774080-9991f1c4c750?q=80&w=2070" class="w-full h-full object-cover" alt="Detail 1">
-                </div>
-                <div class="relative group overflow-hidden bg-gray-200">
-                    <img src="https://images.unsplash.com/photo-1613490493576-7fde63acd811?q=80&w=2071" class="w-full h-full object-cover" alt="Detail 2">
-                </div>
-                <div class="relative group overflow-hidden bg-gray-200">
-                    <img src="https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=2070" class="w-full h-full object-cover" alt="Detail 3">
-                </div>
-                <div class="relative group overflow-hidden bg-gray-200">
-                    <img src="https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=2074" class="w-full h-full object-cover" alt="Detail 4">
+                <!-- Secondary Images -->
+                <div v-for="(img, index) in getGalleryImages(propiedad).slice(1, 5)" :key="index" class="relative group overflow-hidden bg-gray-200 cursor-pointer">
+                    <img :src="img" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" :alt="'Detail ' + (index + 1)">
                 </div>
             </div>
 
@@ -104,7 +98,8 @@
 
                 <!-- Sidebar -->
                 <div class="lg:col-span-1">
-                    <div class="bg-forest text-white rounded-2xl p-8 shadow-2xl border border-leaf/20 sticky top-28">
+                    <!-- Contact Form: Only visible if user is NOT an agent -->
+                    <div v-if="!user || user.tipo_usuario !== 'agente'" class="bg-forest text-white rounded-2xl p-8 shadow-2xl border border-leaf/20 sticky top-28">
                         <div class="flex items-center mb-8 border-b border-white/10 pb-6">
                             <div class="size-16 rounded-full bg-white/10 overflow-hidden mr-4 border-2 border-primary">
                                 <img src="https://ui-avatars.com/api/?name=Agente&background=13ec5b&color=0d1b12&size=128" alt="Agente" class="w-full h-full object-cover" />
@@ -141,6 +136,18 @@
                             </button>
                         </form>
                     </div>
+
+                    <!-- Agent View: Show message instead of form -->
+                    <div v-else class="bg-white/80 dark:bg-background-dark/80 backdrop-blur-md rounded-2xl p-8 shadow-sm border border-leaf/10 sticky top-28 text-center">
+                        <div class="size-16 rounded-full bg-leaf/20 mx-auto flex items-center justify-center mb-4">
+                            <span class="material-symbols-outlined text-3xl text-leaf">person_outline</span>
+                        </div>
+                        <h4 class="text-xl font-bold text-forest dark:text-white mb-2">Vista de Agente</h4>
+                        <p class="text-leaf text-sm mb-6">Estás viendo esta propiedad como agente. El formulario de contacto está deshabilitado.</p>
+                        <router-link to="/propiedades" class="text-primary font-bold hover:underline uppercase tracking-wider text-xs">
+                            Volver al listado
+                        </router-link>
+                    </div>
                 </div>
             </div>
         </div>
@@ -165,13 +172,46 @@ const propiedad = ref(null);
 const sustainabilityData = computed(() => {
     if (!propiedad.value) return null;
     
+    // Parse JSON checklists if they are strings (sometimes axios parses automatically if header is json, but just in case)
+    const parseJson = (val) => {
+        if (!val) return {};
+        if (typeof val === 'string') {
+            try { return JSON.parse(val); } catch (e) { return {}; }
+        }
+        return val;
+    };
+
+    const aislamiento = parseJson(propiedad.value.aislamiento_termico);
+    const energia = parseJson(propiedad.value.fuentes_energia);
+    const agua = parseJson(propiedad.value.consumo_agua);
+    const materiales = parseJson(propiedad.value.materiales_sostenibles);
+
+    // Merge all features into one object for the checklist component
+    const caracteristicas = {
+        ...aislamiento,
+        ...energia,
+        ...agua,
+        ...materiales
+    };
+
+    // Parse external certifications from boolean fields
+    const certs = [];
+    if (propiedad.value.certificacion_breeam) certs.push('BREEAM');
+    if (propiedad.value.certificacion_leed) certs.push('LEED');
+    if (propiedad.value.certificacion_passivhaus) certs.push('Passivhaus');
+
+    // Only return data if there is actually some sustainability info
+    if (!propiedad.value.etiqueta_energetica && certs.length === 0 && Object.keys(caracteristicas).length === 0) {
+        return null; 
+    }
+    
     return {
-        certificacion: propiedad.value.certificacion_energetica || 'C',
+        certificacion: propiedad.value.etiqueta_energetica || null,
         huellaCarbono: parseFloat(propiedad.value.huella_carbono_anual) || 0,
-        ahorroCo2: parseFloat(propiedad.value.ahorro_co2_vs_estandar) || 0,
-        tipoEnergia: propiedad.value.tipo_energia || null,
-        certificacionesExternas: propiedad.value.certificaciones ? JSON.parse(propiedad.value.certificaciones) : [],
-        caracteristicas: propiedad.value.caracteristicas_sostenibles || null
+        ahorroCo2: parseFloat(propiedad.value.ahorro_co2_estimado) || 0,
+        tipoEnergia: propiedad.value.tipo_energia || null, // This might need update if logic changed to use JSON
+        certificacionesExternas: certs,
+        caracteristicas: caracteristicas
     };
 });
 
@@ -195,11 +235,64 @@ const formatPrice = (propiedad) => {
     }).format(precio) + (propiedad.tipo_operacion === 'alquiler' ? '/mes' : '');
 };
 
-const getCoverImage = () => {
+const getCoverImage = (propiedad) => {
+    if (!propiedad) return '';
+    
+    if (propiedad.imagenes && propiedad.imagenes.length > 0) {
+         const cover = [...propiedad.imagenes].sort((a, b) => a.orden - b.orden)[0];
+         return cover.url;
+    }
+    
+    if (propiedad.fotos) {
+        let fotosArray = [];
+        try {
+            fotosArray = typeof propiedad.fotos === 'string' ? JSON.parse(propiedad.fotos) : propiedad.fotos;
+        } catch (e) {}
+        if (Array.isArray(fotosArray) && fotosArray.length > 0) return fotosArray[0];
+    }
+
     return 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop';
 };
 
+const getGalleryImages = (propiedad) => {
+    if (!propiedad) return [];
+    
+    let images = [];
+    
+    // Nueva tabla
+    if (propiedad.imagenes && propiedad.imagenes.length > 0) {
+        images = [...propiedad.imagenes].sort((a, b) => a.orden - b.orden).map(img => img.url);
+    } 
+    // Legacy
+    else if (propiedad.fotos) {
+        try {
+            const parsed = typeof propiedad.fotos === 'string' ? JSON.parse(propiedad.fotos) : propiedad.fotos;
+            if (Array.isArray(parsed)) images = parsed;
+        } catch (e) {}
+    }
+    
+    // Fill with placeholders if less than 5 images (to fill the grid)
+    const placeholders = [
+        'https://images.unsplash.com/photo-1512917774080-9991f1c4c750',
+        'https://images.unsplash.com/photo-1613490493576-7fde63acd811',
+        'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea',
+        'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0'
+    ];
+    
+    while(images.length < 5) {
+        images.push(placeholders[images.length % placeholders.length]);
+    }
+    
+    return images;
+};
+
+const user = ref(null);
+
 onMounted(() => {
     fetchPropiedad();
+    const storedUser = localStorage.getItem('user');
+    if (storedUser) {
+        user.value = JSON.parse(storedUser);
+    }
 });
 </script>

@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('caracteristicas_sostenibles', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('propiedad_id')->constrained('propiedades')->onDelete('cascade');
+            $table->foreignId('propiedad_id')->constrained('propiedades', 'id_propiedad')->onDelete('cascade');
             
             // Aislamiento
             $table->boolean('aislamiento_termico')->default(false);

@@ -78,10 +78,8 @@
                             <select v-model="filters.tipo_energia" class="bg-transparent border-none p-0 text-sm focus:ring-0 w-full appearance-none text-forest font-bold cursor-pointer">
                                 <option value="">Tipo de energía</option>
                                 <option value="aerotermia">Aerotermia</option>
-                                <option value="solar">Solar</option>
+                                <option value="placas_solares">Placas Solares</option>
                                 <option value="biomasa">Biomasa</option>
-                                <option value="geotermia">Geotermia</option>
-                                <option value="hibrido">Híbrido</option>
                             </select>
                         </div>
                     </div>
@@ -116,13 +114,19 @@
                 >
                     <div class="bg-white dark:bg-background-dark/40 rounded-2xl overflow-hidden shadow-lg border border-leaf/5 hover:shadow-2xl transition-all h-full flex flex-col">
                         <div class="relative h-64 overflow-hidden shrink-0">
-                            <img :src="getCoverImage(propiedad.fotos)" 
+                            <img :src="getCoverImage(propiedad)" 
                                  class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" 
                                  :alt="propiedad.titulo"
                             >
                             <div class="absolute top-4 left-4 text-forest text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest shadow-sm"
                                  :class="propiedad.tipo_operacion === 'venta' ? 'bg-primary' : 'bg-white'">
                                 {{ propiedad.tipo_operacion }}
+                            </div>
+                            <!-- Energy Badge -->
+                            <div v-if="propiedad.etiqueta_energetica" 
+                                class="absolute top-4 right-4 text-white text-[12px] font-black w-8 h-8 rounded-full flex items-center justify-center shadow-sm border-2 border-white"
+                                :class="getEnergyColor(propiedad.etiqueta_energetica)">
+                                {{ propiedad.etiqueta_energetica }}
                             </div>
                             <div class="absolute bottom-4 right-4 bg-forest/90 backdrop-blur-sm text-white text-sm font-bold px-3 py-1 rounded-lg shadow-lg border border-leaf/20">
                                 {{ formatPrice(propiedad) }}
@@ -197,7 +201,22 @@ const clearFilters = () => {
     filters.ubicacion = '';
     filters.tipo = '';
     filters.operacion = '';
+    filters.certificacion = '';
+    filters.tipo_energia = '';
     fetchProperties();
+};
+
+const getEnergyColor = (label) => {
+    const colors = {
+        'A': 'bg-[#13ec5b]',
+        'B': 'bg-[#4c9a66]',
+        'C': 'bg-[#f4e04d]',
+        'D': 'bg-[#f9a825]',
+        'E': 'bg-[#ff8c00]',
+        'F': 'bg-[#ff6347]',
+        'G': 'bg-[#dc143c]',
+    };
+    return colors[label] || 'bg-gray-400';
 };
 
 const formatPrice = (propiedad) => {
@@ -210,7 +229,31 @@ const formatPrice = (propiedad) => {
     }).format(precio) + (propiedad.tipo_operacion === 'alquiler' ? '/mes' : '');
 };
 
-const getCoverImage = () => {
+const getCoverImage = (propiedad) => {
+    // 1. Prioridad: Nueva tabla de imágenes (relación)
+    if (propiedad.imagenes && propiedad.imagenes.length > 0) {
+         // Ordenar por 'orden' ascendente y coger la primera
+         const cover = [...propiedad.imagenes].sort((a, b) => a.orden - b.orden)[0];
+         return cover.url;
+    }
+    
+    // 2. Legacy: Campo JSON 'fotos'
+    if (propiedad.fotos) {
+        let fotosArray = [];
+        try {
+            fotosArray = typeof propiedad.fotos === 'string' 
+                ? JSON.parse(propiedad.fotos) 
+                : propiedad.fotos;
+        } catch (e) {
+            console.error('Error parsing fotos JSON', e);
+        }
+        
+        if (Array.isArray(fotosArray) && fotosArray.length > 0) {
+            return fotosArray[0];
+        }
+    }
+
+    // 3. Fallback default
     return 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop';
 };
 
