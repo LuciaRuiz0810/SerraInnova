@@ -5,7 +5,7 @@
             <div class="glass-effect dark:glass-effect-dark rounded-3xl p-8 shadow-2xl border-2 border-primary/20 glow-primary">
                 <!-- Logo/Título -->
                 <div class="text-center mb-8">
-                    <h1 class="text-3xl font-black text-forest dark:text-white mb-2">Bienvenido</h1>
+                    <h1 class="text-3xl font-black text-black mb-2">Bienvenido</h1>
                     <p class="text-leaf">Inicia sesión en SerraInnova</p>
                 </div>
 

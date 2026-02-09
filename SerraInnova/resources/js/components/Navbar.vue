@@ -2,7 +2,7 @@
     <header class="sticky top-0 z-50 w-full border-b border-leaf/10 bg-background-light/80 backdrop-blur-md dark:bg-background-dark/80 dark:border-white/10">
         <div class="mx-auto flex max-w-[1280px] items-center justify-between px-6 md:px-10 py-4">
             <div class="flex items-center gap-3">
-                <img src="../../images/logo.png" alt="SerraInnova Logo" class="h-12 w-auto object-contain drop-shadow-md">
+                <img :src="logoImage" alt="SerraInnova Logo" class="h-15 w-15 object-cover rounded-xl drop-shadow-md">
                 <h2 class="text-xl font-extrabold tracking-tight text-forest dark:text-white hidden sm:block">SerraInnova</h2>
             </div>
 
@@ -17,6 +17,8 @@
                 
                 <router-link to="/servicios" class="text-sm font-semibold hover:text-primary transition-colors">Servicios</router-link>
                 
+                <router-link to="/nosotros" class="text-sm font-semibold hover:text-primary transition-colors">Nosotros</router-link>
+                
                 <!-- Panel Admin: solo para administradores -->
                 <router-link v-if="user && user.tipo_usuario === 'administrador'" to="/admin" class="text-sm font-semibold hover:text-primary transition-colors flex items-center gap-1">
                     <span class="material-symbols-outlined text-sm">admin_panel_settings</span>
@@ -26,7 +28,7 @@
                 <!-- Vender: solo para agentes -->
                 <router-link v-if="user && user.tipo_usuario === 'agente'" to="/vender" class="text-sm font-semibold hover:text-primary transition-colors">Vender</router-link>
                 
-                <a href="#" class="text-sm font-semibold hover:text-primary transition-colors">Contacto</a>
+                <router-link to="/contacto" class="text-sm font-semibold hover:text-primary transition-colors">Contacto</router-link>
             </nav>
 
             <div class="flex items-center gap-4">
@@ -79,7 +81,7 @@
                     <!-- Vender: solo para agentes -->
                     <router-link v-if="user && user.tipo_usuario === 'agente'" @click="closeMenu" to="/vender" class="text-sm font-semibold hover:text-primary transition-colors py-2">Vender</router-link>
                     
-                    <a @click="closeMenu" href="#" class="text-sm font-semibold hover:text-primary transition-colors py-2">Contacto</a>
+                    <router-link @click="closeMenu" to="/contacto" class="text-sm font-semibold hover:text-primary transition-colors py-2">Contacto</router-link>
                     <router-link @click="closeMenu" to="/nosotros" class="text-sm font-semibold hover:text-primary transition-colors py-2">Nosotros</router-link>
                     <router-link @click="closeMenu" to="/agentes" class="text-sm font-semibold hover:text-primary transition-colors py-2">Agentes</router-link>
                     
@@ -110,6 +112,7 @@
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
 import axios from 'axios';
+import logoImage from '../images/logo.png';
 
 const router = useRouter();
 const isMenuOpen = ref(false);

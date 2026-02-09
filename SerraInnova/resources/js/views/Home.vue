@@ -35,7 +35,7 @@
 
                         <!-- Título para vendedores -->
                         <div v-if="user && user.tipo_usuario === 'agente'" class="w-full mb-2">
-                            <h3 class="text-lg font-bold text-forest dark:text-white">Buscar Propiedades</h3>
+                            <h3 class="text-lg font-bold text-forest text-black">Buscar Propiedades</h3>
                             <p class="text-sm text-leaf">Encuentra propiedades en el mercado</p>
                         </div>
 
@@ -43,7 +43,7 @@
                             <span class="text-[10px] uppercase font-bold tracking-wider text-leaf">Localización</span>
                             <div class="flex items-center gap-2 border-2 border-leaf/20 rounded-xl px-4 py-3 bg-background-light dark:bg-background-dark/50 hover:border-primary/40 transition-all duration-300 shadow-sm hover:shadow-md">
                                 <span class="material-symbols-outlined text-leaf text-sm">location_on</span>
-                                <input v-model="filters.ubicacion" class="bg-transparent border-none p-0 text-sm focus:ring-0 w-full placeholder:text-leaf/50" placeholder="¿Dónde buscas?" type="text"/>
+                                <input v-model="filters.ubicacion" class="bg-transparent border-none p-0 text-sm font-semibold text-forest dark:text-white focus:ring-0 w-full placeholder:text-white placeholder:font-normal" placeholder="¿Dónde buscas?" type="text"/>
                             </div>
                         </div>
 
@@ -51,12 +51,12 @@
                             <span class="text-[10px] uppercase font-bold tracking-wider text-leaf">Tipo de Propiedad</span>
                             <div class="flex items-center gap-2 border-2 border-leaf/20 rounded-xl px-4 py-3 bg-background-light dark:bg-background-dark/50 hover:border-primary/40 transition-all duration-300 shadow-sm hover:shadow-md">
                                 <span class="material-symbols-outlined text-leaf text-sm">home</span>
-                                <select v-model="filters.tipo" class="bg-transparent border-none p-0 text-sm focus:ring-0 w-full appearance-none">
-                                    <option value="">Todas</option>
-                                    <option value="casa">Casa</option>
-                                    <option value="apartamento">Apartamento</option>
-                                    <option value="local">Local</option>
-                                    <option value="terreno">Terreno</option>
+                                <select v-model="filters.tipo" class="bg-transparent border-none p-0 text-sm font-semibold text-forest dark:text-white focus:ring-0 w-full appearance-none cursor-pointer">
+                                    <option value="" class="bg-white dark:bg-gray-800 text-forest dark:text-white font-semibold">Todas las propiedades</option>
+                                    <option value="casa" class="bg-white dark:bg-gray-800 text-forest dark:text-white font-semibold">🏡 Casa</option>
+                                    <option value="apartamento" class="bg-white dark:bg-gray-800 text-forest dark:text-white font-semibold">🏢 Apartamento</option>
+                                    <option value="local" class="bg-white dark:bg-gray-800 text-forest dark:text-white font-semibold">🏪 Local Comercial</option>
+                                    <option value="terreno" class="bg-white dark:bg-gray-800 text-forest dark:text-white font-semibold">🌳 Terreno</option>
                                 </select>
                             </div>
                         </div>
@@ -65,11 +65,12 @@
                             <span class="text-[10px] uppercase font-bold tracking-wider text-leaf">Presupuesto</span>
                             <div class="flex items-center gap-2 border-2 border-leaf/20 rounded-xl px-4 py-3 bg-background-light dark:bg-background-dark/50 hover:border-primary/40 transition-all duration-300 shadow-sm hover:shadow-md">
                                 <span class="material-symbols-outlined text-leaf text-sm">payments</span>
-                                <select class="bg-transparent border-none p-0 text-sm focus:ring-0 w-full appearance-none">
-                                    <option>Cualquier precio</option>
-                                    <option>200k - 400k</option>
-                                    <option>400k - 800k</option>
-                                    <option>+800k</option>
+                                <select class="bg-transparent border-none p-0 text-sm font-semibold text-forest dark:text-white focus:ring-0 w-full appearance-none cursor-pointer">
+                                    <option value="" class="bg-white dark:bg-gray-800 text-forest dark:text-white font-semibold">💰 Cualquier precio</option>
+                                    <option value="0-200000" class="bg-white dark:bg-gray-800 text-forest dark:text-white font-semibold">💵 Hasta 200.000€</option>
+                                    <option value="200000-400000" class="bg-white dark:bg-gray-800 text-forest dark:text-white font-semibold">💶 200.000€ - 400.000€</option>
+                                    <option value="400000-800000" class="bg-white dark:bg-gray-800 text-forest dark:text-white font-semibold">💷 400.000€ - 800.000€</option>
+                                    <option value="800000-plus" class="bg-white dark:bg-gray-800 text-forest dark:text-white font-semibold">💎 Más de 800.000€</option>
                                 </select>
                             </div>
                         </div>
@@ -312,6 +313,13 @@ const fetchFeaturedProperties = async () => {
         loading.value = true;
         const response = await axios.get('/propiedades/featured');
         featuredProperties.value = response.data;
+        
+        // Debug: ver el formato de los datos
+        if (response.data.length > 0) {
+            console.log('Primera propiedad:', response.data[0]);
+            console.log('Tipo de fotos:', typeof response.data[0].fotos);
+            console.log('Fotos:', response.data[0].fotos);
+        }
     } catch (error) {
         console.error('Error al cargar propiedades destacadas:', error);
     } finally {
@@ -329,10 +337,27 @@ const formatPrice = (propiedad) => {
 };
 
 const getPropertyImage = (propiedad) => {
-    if (propiedad.fotos && propiedad.fotos.length > 0) {
-        return propiedad.fotos[0];
+    // Laravel ya convierte el JSON a array automáticamente
+    if (propiedad.fotos && Array.isArray(propiedad.fotos) && propiedad.fotos.length > 0) {
+        const foto = propiedad.fotos[0];
+        
+        // Si la foto ya tiene una URL completa (http/https)
+        if (foto.startsWith('http://') || foto.startsWith('https://')) {
+            return foto;
+        }
+        
+        // Si la foto empieza con /storage, usarla directamente
+        if (foto.startsWith('/storage/')) {
+            return foto;
+        }
+        
+        // Si es solo el nombre del archivo, construir la ruta completa
+        // Asumiendo que las fotos se guardan en storage/app/public/propiedades
+        return `/storage/propiedades/${foto}`;
     }
-    return 'https://via.placeholder.com/400x300?text=Sin+Imagen';
+    
+    // Imagen por defecto si no hay fotos
+    return 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=400&h=300&fit=crop';
 };
 
 const search = () => {

@@ -115,6 +115,12 @@ const routes = [
         meta: { requiresAuth: true }
     },
     {
+        path: '/contacto',
+        name: 'Contacto',
+        component: () => import('../views/Contacto.vue'),
+        meta: { requiresAuth: true }
+    },
+    {
         path: '/login',
         name: 'Login',
         component: Login,

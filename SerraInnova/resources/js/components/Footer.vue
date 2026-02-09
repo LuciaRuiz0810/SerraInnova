@@ -12,7 +12,7 @@
                 <!-- Brand -->
                 <div class="space-y-6">
                     <div class="flex items-center gap-3 text-white">
-                        <img src="../../images/logo.png" alt="SerraInnova Logo" class="h-16 w-auto object-contain bg-white/5 rounded-xl p-2 border border-white/10 backdrop-blur-sm">
+                        <img :src="logoImage" alt="SerraInnova Logo" class="h-12 w-12 object-cover rounded-xl drop-shadow-md">
                         <h2 class="text-2xl font-black tracking-tight font-display">SerraInnova</h2>
                     </div>
                     <p class="text-base leading-relaxed text-white/60">
@@ -82,4 +82,5 @@
 </template>
 
 <script setup>
+    import logoImage from '../images/logo.png';
 </script>
