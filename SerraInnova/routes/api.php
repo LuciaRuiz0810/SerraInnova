@@ -7,6 +7,7 @@ use App\Http\Controllers\Api\AgenteController;
 use App\Http\Controllers\Api\AdminUserController;
 use App\Http\Controllers\Api\DashboardController;
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\ArticuloController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
@@ -36,6 +37,12 @@ Route::middleware('auth:sanctum')->group(function () {
     
     // Admin Propiedades (Lista completa)
     Route::get('/admin/propiedades', [PropiedadController::class, 'indexAdmin']);
+    
+    // Admin Artículos
+    Route::get('/admin/articulos', [ArticuloController::class, 'admin']);
+    Route::post('/articulos', [ArticuloController::class, 'store']);
+    Route::put('/articulos/{id}', [ArticuloController::class, 'update']);
+    Route::delete('/articulos/{id}', [ArticuloController::class, 'destroy']);
 });
 
 // Rutas públicas de propiedades
@@ -55,3 +62,8 @@ Route::middleware(['auth:sanctum'])->group(function () {
 
 // Rutas públicas de agentes
 Route::get('/agentes', [AgenteController::class, 'index']);
+
+// Rutas públicas de artículos
+Route::get('/articulos', [ArticuloController::class, 'index']);
+Route::get('/articulos/{slug}', [ArticuloController::class, 'show']);
+

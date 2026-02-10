@@ -78,6 +78,11 @@
                         <span class="material-symbols-outlined text-forest dark:text-primary group-hover:scale-110 transition-transform">manage_accounts</span>
                         <span class="font-bold text-forest dark:text-white">Gestión Usuarios</span>
                     </router-link>
+
+                    <router-link to="/admin/blog" class="flex items-center gap-3 p-4 bg-white/50 dark:bg-background-dark/50 rounded-xl border-2 border-leaf/10 hover:border-primary/50 hover:bg-white/80 transition-all text-left group">
+                        <span class="material-symbols-outlined text-forest dark:text-primary group-hover:scale-110 transition-transform">article</span>
+                        <span class="font-bold text-forest dark:text-white">Gestión Blog</span>
+                    </router-link>
                 </div>
             </div>
         </div>

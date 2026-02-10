@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             ClienteSeeder::class,
             PropiedadSeeder::class,
             ContratoSeeder::class,
+            ArticuloSeeder::class,
         ]);
     }
 }

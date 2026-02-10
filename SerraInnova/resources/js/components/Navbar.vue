@@ -17,6 +17,8 @@
                 
                 <router-link to="/servicios" class="text-sm font-semibold hover:text-primary transition-colors">Servicios</router-link>
                 
+                <router-link to="/blog" class="text-sm font-semibold hover:text-primary transition-colors">Blog</router-link>
+                
                 <router-link to="/nosotros" class="text-sm font-semibold hover:text-primary transition-colors">Nosotros</router-link>
                 
                 <!-- Panel Admin: solo para administradores -->
@@ -77,6 +79,8 @@
                     </router-link>
                     
                     <router-link @click="closeMenu" to="/servicios" class="text-sm font-semibold hover:text-primary transition-colors py-2">Servicios</router-link>
+                    
+                    <router-link @click="closeMenu" to="/blog" class="text-sm font-semibold hover:text-primary transition-colors py-2">Blog</router-link>
                     
                     <!-- Vender: solo para agentes -->
                     <router-link v-if="user && user.tipo_usuario === 'agente'" @click="closeMenu" to="/vender" class="text-sm font-semibold hover:text-primary transition-colors py-2">Vender</router-link>

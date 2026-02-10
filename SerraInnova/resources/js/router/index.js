@@ -8,6 +8,8 @@ import Calculator from '../views/Calculator.vue';
 import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
 import SellProperty from '../views/SellProperty.vue';
+import Blog from '../views/Blog.vue';
+import BlogDetail from '../views/BlogDetail.vue';
 
 const routes = [
     {
@@ -135,11 +137,56 @@ const routes = [
         component: () => import('../views/SellProperty.vue'),
         meta: { requiresAuth: true, role: 'agente' }
     },
+    // Blog Routes
+    {
+        path: '/blog',
+        name: 'Blog',
+        component: Blog,
+    },
+    {
+        path: '/blog/:slug',
+        name: 'BlogDetail',
+        component: BlogDetail,
+    },
+    // Admin Blog Routes
+    {
+        path: '/admin/blog',
+        name: 'AdminBlog',
+        component: () => import('../views/AdminBlog.vue'),
+        meta: { requiresAuth: true, requiresAdmin: true }
+    },
+    {
+        path: '/admin/blog/create',
+        name: 'AdminBlogCreate',
+        component: () => import('../views/AdminBlogForm.vue'),
+        meta: { requiresAuth: true, requiresAdmin: true }
+    },
+    {
+        path: '/admin/blog/:id/edit',
+        name: 'AdminBlogEdit',
+        component: () => import('../views/AdminBlogForm.vue'),
+        meta: { requiresAuth: true, requiresAdmin: true }
+    },
 ];
 
 const router = createRouter({
     history: createWebHistory(),
     routes,
+    scrollBehavior(to, from, savedPosition) {
+        // Si hay una posición guardada (por ejemplo, al usar el botón "atrás" del navegador)
+        if (savedPosition) {
+            return savedPosition;
+        }
+        // Si hay un hash en la URL (por ejemplo, #seccion)
+        if (to.hash) {
+            return {
+                el: to.hash,
+                behavior: 'smooth',
+            };
+        }
+        // Por defecto, siempre scroll al inicio
+        return { top: 0, behavior: 'smooth' };
+    },
 });
 
 // Guard de navegación
