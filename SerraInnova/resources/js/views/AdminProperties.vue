@@ -115,10 +115,10 @@ const getMainImage = (property) => {
     if (property.fotos && property.fotos.length > 0) {
         try {
             const fotos = typeof property.fotos === 'string' ? JSON.parse(property.fotos) : property.fotos;
-            return fotos[0] || '/images/placeholder-property.jpg';
-        } catch (e) { return '/images/placeholder-property.jpg'; }
+            return fotos[0] || 'https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=400';
+        } catch (e) { return 'https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=400'; }
     }
-    return '/images/placeholder-property.jpg';
+    return 'https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=400';
 };
 
 const formatPrice = (property) => {

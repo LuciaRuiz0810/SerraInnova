@@ -4,7 +4,7 @@
         <section class="relative px-4 pt-6 pb-20 md:px-10 lg:px-20">
             <div class="mx-auto max-w-[1200px]">
                 <div class="relative min-h-[560px] flex flex-col items-center justify-center rounded-3xl overflow-hidden bg-cover bg-center p-8 shadow-2xl" 
-                     style='background-image: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(13,27,18,0.7)), url("https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&auto=format&fit=crop");'>
+                     style='background-image: linear-gradient(to bottom, rgba(0,0,0,0.4), rgba(13,27,18,0.7)), url("https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200");'>
                     <div class="relative z-10 max-w-3xl text-center space-y-6">
                         <h1 class="text-4xl md:text-6xl font-black text-white leading-[1.1] tracking-tight">
                             Nuestros Servicios de 
@@ -130,7 +130,7 @@
                     
                     <div class="order-1 md:order-2">
                         <div class="relative rounded-3xl overflow-hidden shadow-2xl">
-                            <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?w=800&auto=format&fit=crop" 
+                            <img src="https://images.pexels.com/photos/1560518/pexels-photo-1560518.jpeg?auto=compress&cs=tinysrgb&w=800" 
                                  alt="Auditoría energética" 
                                  class="w-full h-auto">
                             <div class="absolute inset-0 bg-gradient-to-t from-forest/60 to-transparent"></div>
@@ -155,7 +155,7 @@
                 <div class="grid md:grid-cols-2 gap-12 items-center">
                     <div>
                         <div class="relative rounded-3xl overflow-hidden shadow-2xl">
-                            <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=800&auto=format&fit=crop" 
+                            <img src="https://images.pexels.com/photos/3184360/pexels-photo-3184360.jpeg?auto=compress&cs=tinysrgb&w=800" 
                                  alt="Gestión de subvenciones" 
                                  class="w-full h-auto">
                             <div class="absolute top-6 right-6">
@@ -264,7 +264,7 @@
                                 <div class="absolute top-4 left-4 z-10 bg-red-500/90 text-white text-xs font-black px-3 py-1.5 rounded-full uppercase">
                                     Antes
                                 </div>
-                                <img src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?w=800&auto=format&fit=crop" 
+                                <img src="https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800" 
                                      alt="Casa antes de rehabilitación" 
                                      class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
@@ -279,7 +279,7 @@
                                 <div class="absolute top-4 left-4 z-10 bg-primary text-forest text-xs font-black px-3 py-1.5 rounded-full uppercase shadow-lg">
                                     Después
                                 </div>
-                                <img src="https://images.unsplash.com/photo-1600596542815-ffad4c1539a9?w=800&auto=format&fit=crop" 
+                                <img src="https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=800" 
                                      alt="Casa después de rehabilitación" 
                                      class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105">
                                 <div class="absolute inset-0 bg-gradient-to-t from-forest/60 to-transparent"></div>
@@ -344,7 +344,7 @@
                                 <div class="absolute top-4 left-4 z-10 bg-red-500/90 text-white text-xs font-black px-3 py-1.5 rounded-full uppercase">
                                     Antes
                                 </div>
-                                <img src="https://images.unsplash.com/photo-1502672260266-1c1ef2d93688?w=800&auto=format&fit=crop" 
+                                <img src="https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg?auto=compress&cs=tinysrgb&w=800" 
                                      alt="Apartamento antes de rehabilitación" 
                                      class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
@@ -359,7 +359,7 @@
                                 <div class="absolute top-4 left-4 z-10 bg-primary text-forest text-xs font-black px-3 py-1.5 rounded-full uppercase shadow-lg">
                                     Después
                                 </div>
-                                <img src="https://images.unsplash.com/photo-1502672023488-70e25813eb80?w=800&auto=format&fit=crop" 
+                                <img src="https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=800" 
                                      alt="Apartamento después de rehabilitación" 
                                      class="w-full h-80 object-cover transition-transform duration-500 group-hover:scale-105">
                                 <div class="absolute inset-0 bg-gradient-to-t from-forest/60 to-transparent"></div>

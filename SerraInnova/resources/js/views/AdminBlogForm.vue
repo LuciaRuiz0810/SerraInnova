@@ -44,15 +44,43 @@
 
                 <!-- Contenido -->
                 <div>
-                    <label class="block text-forest dark:text-white font-bold mb-2">
-                        Contenido * (HTML)
-                    </label>
-                    <textarea v-model="form.contenido" 
-                              rows="12"
-                              required
-                              placeholder="<p>Contenido del artículo en HTML...</p>"
-                              class="w-full px-4 py-3 rounded-lg border-2 border-leaf/20 focus:border-primary focus:outline-none transition-colors dark:bg-background-dark dark:text-white font-mono text-sm"></textarea>
-                    <p class="text-xs text-leaf mt-1">Usa HTML para dar formato al contenido del artículo</p>
+                    <div class="flex items-center justify-between mb-2">
+                        <label class="block text-forest dark:text-white font-bold">
+                            Contenido * (HTML)
+                        </label>
+                        <button type="button" 
+                                @click="mostrarVistaPrevia = !mostrarVistaPrevia"
+                                class="text-sm font-semibold text-primary hover:text-leaf transition-colors flex items-center gap-1">
+                            <span class="material-symbols-outlined text-sm">{{ mostrarVistaPrevia ? 'code' : 'visibility' }}</span>
+                            {{ mostrarVistaPrevia ? 'Ver Código' : 'Vista Previa' }}
+                        </button>
+                    </div>
+                    
+                    <div class="grid" :class="mostrarVistaPrevia ? 'md:grid-cols-2 gap-4' : 'grid-cols-1'">
+                        <!-- Editor de código -->
+                        <div>
+                            <textarea v-model="form.contenido" 
+                                      rows="12"
+                                      required
+                                      placeholder="<p>Contenido del artículo en HTML...</p>"
+                                      class="w-full px-4 py-3 rounded-lg border-2 border-leaf/20 focus:border-primary focus:outline-none transition-colors dark:bg-background-dark dark:text-white font-mono text-sm"></textarea>
+                            <p class="text-xs text-leaf mt-1">Usa HTML para dar formato al contenido del artículo</p>
+                        </div>
+                        
+                        <!-- Vista previa -->
+                        <div v-if="mostrarVistaPrevia" class="border-2 border-leaf/20 rounded-lg p-4 bg-white dark:bg-background-dark/50 overflow-auto max-h-[400px]">
+                            <div class="prose prose-sm dark:prose-invert max-w-none
+                                        prose-headings:font-black prose-headings:text-forest dark:prose-headings:text-white
+                                        prose-h2:text-2xl prose-h2:mt-6 prose-h2:mb-4
+                                        prose-h3:text-xl prose-h3:mt-4 prose-h3:mb-2
+                                        prose-p:text-leaf dark:prose-p:text-white/80 prose-p:leading-relaxed
+                                        prose-li:text-leaf dark:prose-li:text-white/80
+                                        prose-a:text-primary prose-a:font-semibold hover:prose-a:underline
+                                        prose-strong:text-forest dark:prose-strong:text-white"
+                                 v-html="form.contenido || '<p class=\'text-leaf/50 italic\'>La vista previa aparecerá aquí...</p>'">
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
                 <!-- Imagen Destacada -->
@@ -64,7 +92,7 @@
                            type="url" 
                            placeholder="https://example.com/imagen.jpg"
                            class="w-full px-4 py-3 rounded-lg border-2 border-leaf/20 focus:border-primary focus:outline-none transition-colors dark:bg-background-dark dark:text-white">
-                    <p class="text-xs text-leaf mt-1">URL de Unsplash u otra fuente de imágenes</p>
+                    <p class="text-xs text-leaf mt-1">URL de Pexels u otra fuente de imágenes</p>
                 </div>
 
                 <!-- Categoría -->
@@ -126,6 +154,7 @@ const router = useRouter();
 const modoEdicion = computed(() => !!route.params.id);
 const guardando = ref(false);
 const error = ref('');
+const mostrarVistaPrevia = ref(false);
 
 const form = ref({
     titulo: '',

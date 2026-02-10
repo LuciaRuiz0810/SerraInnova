@@ -254,7 +254,7 @@ const getCoverImage = (propiedad) => {
     }
 
     // 3. Fallback default
-    return 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop';
+    return 'https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=800';
 };
 
 onMounted(() => {

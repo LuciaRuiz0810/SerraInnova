@@ -46,7 +46,7 @@
                     </div>
                     <div class="relative group">
                         <div class="absolute -inset-4 bg-gradient-to-br from-primary/20 to-leaf/20 blur-3xl opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                        <img src="https://images.unsplash.com/photo-1448375232230-071383e6060c?q=80&w=2070" 
+                        <img src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200" 
                              alt="Bosque sostenible" 
                              class="relative rounded-[40px] shadow-2xl border-2 border-primary/20 object-cover h-[500px] w-full">
                     </div>

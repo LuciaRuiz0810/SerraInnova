@@ -3,13 +3,13 @@ import Home from '../views/Home.vue';
 import Properties from '../views/Properties.vue';
 import PropertyDetail from '../views/PropertyDetail.vue';
 import About from '../views/About.vue';
-import Agents from '../views/Agents.vue';
 import Calculator from '../views/Calculator.vue';
 import Login from '../views/Login.vue';
 import Register from '../views/Register.vue';
 import SellProperty from '../views/SellProperty.vue';
 import Blog from '../views/Blog.vue';
 import BlogDetail from '../views/BlogDetail.vue';
+import NotFound from '../views/NotFound.vue';
 
 const routes = [
     {
@@ -95,11 +95,6 @@ const routes = [
         component: About,
     },
     {
-        path: '/agentes',
-        name: 'Agents',
-        component: Agents,
-    },
-    {
         path: '/servicios',
         name: 'Services',
         component: () => import('../views/Services.vue'),
@@ -166,6 +161,12 @@ const routes = [
         name: 'AdminBlogEdit',
         component: () => import('../views/AdminBlogForm.vue'),
         meta: { requiresAuth: true, requiresAdmin: true }
+    },
+    // 404 - Debe estar al final
+    {
+        path: '/:pathMatch(.*)*',
+        name: 'NotFound',
+        component: NotFound,
     },
 ];
 

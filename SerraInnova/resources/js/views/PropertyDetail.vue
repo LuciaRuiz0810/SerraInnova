@@ -251,7 +251,7 @@ const getCoverImage = (propiedad) => {
         if (Array.isArray(fotosArray) && fotosArray.length > 0) return fotosArray[0];
     }
 
-    return 'https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2070&auto=format&fit=crop';
+    return 'https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=800';
 };
 
 const getGalleryImages = (propiedad) => {
@@ -273,10 +273,10 @@ const getGalleryImages = (propiedad) => {
     
     // Fill with placeholders if less than 5 images (to fill the grid)
     const placeholders = [
-        'https://images.unsplash.com/photo-1512917774080-9991f1c4c750',
-        'https://images.unsplash.com/photo-1613490493576-7fde63acd811',
-        'https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea',
-        'https://images.unsplash.com/photo-1600210492486-724fe5c67fb0'
+        'https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=800',
+        'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800',
+        'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=800',
+        'https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=800'
     ];
     
     while(images.length < 5) {

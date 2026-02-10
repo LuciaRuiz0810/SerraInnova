@@ -357,7 +357,7 @@ const getPropertyImage = (propiedad) => {
     }
     
     // Imagen por defecto si no hay fotos
-    return 'https://images.unsplash.com/photo-1568605114967-8130f3a36994?w=400&h=300&fit=crop';
+    return 'https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=800';
 };
 
 const search = () => {

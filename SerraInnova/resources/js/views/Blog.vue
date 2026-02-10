@@ -4,7 +4,7 @@
         <section class="relative px-4 pt-6 pb-16 md:px-10 lg:px-20">
             <div class="mx-auto max-w-[1200px]">
                 <div class="relative min-h-[400px] flex flex-col items-center justify-center rounded-3xl overflow-hidden bg-cover bg-center p-8 shadow-2xl" 
-                     style='background-image: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(13,27,18,0.8)), url("https://images.unsplash.com/photo-1497366216548-37526070297c?w=1200&auto=format&fit=crop");'>
+                     style='background-image: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(13,27,18,0.8)), url("https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200");'>
                     <div class="relative z-10 max-w-3xl text-center space-y-6">
                         <h1 class="text-4xl md:text-6xl font-black text-white leading-[1.1] tracking-tight">
                             Área de <span class="text-primary">Normativa</span>
@@ -73,7 +73,7 @@
                              class="group cursor-pointer bg-white dark:bg-background-dark/40 rounded-3xl overflow-hidden shadow-xl border-2 border-leaf/5 hover:shadow-2xl hover:border-primary/30 hover:-translate-y-2 transition-all duration-500">
                         <!-- Featured Image -->
                         <div class="relative h-56 overflow-hidden">
-                            <img :src="articulo.imagen_destacada || 'https://images.unsplash.com/photo-1497366216548-37526070297c?w=800'" 
+                            <img :src="articulo.imagen_destacada || 'https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=800'" 
                                  :alt="articulo.titulo"
                                  class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500">
                             <div class="absolute inset-0 bg-gradient-to-t from-forest/60 to-transparent"></div>

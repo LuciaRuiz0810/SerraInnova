@@ -46,8 +46,8 @@ class PropiedadSeeder extends Seeder
             'amueblado' => true,
             'estado' => 'disponible',
             'fotos' => json_encode([
-                '/images/propiedades/apartamento1_1.jpg',
-                '/images/propiedades/apartamento1_2.jpg',
+                'https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=800',
+                'https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=800',
             ]),
         ]);
 
@@ -74,9 +74,9 @@ class PropiedadSeeder extends Seeder
             'amueblado' => false,
             'estado' => 'disponible',
             'fotos' => json_encode([
-                '/images/propiedades/chalet1_1.jpg',
-                '/images/propiedades/chalet1_2.jpg',
-                '/images/propiedades/chalet1_3.jpg',
+                'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=800',
+                'https://images.pexels.com/photos/1396132/pexels-photo-1396132.jpeg?auto=compress&cs=tinysrgb&w=800',
+                'https://images.pexels.com/photos/2102587/pexels-photo-2102587.jpeg?auto=compress&cs=tinysrgb&w=800',
             ]),
         ]);
 
@@ -103,8 +103,8 @@ class PropiedadSeeder extends Seeder
             'amueblado' => false,
             'estado' => 'disponible',
             'fotos' => json_encode([
-                '/images/propiedades/piso1_1.jpg',
-                '/images/propiedades/piso1_2.jpg',
+                'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800',
+                'https://images.pexels.com/photos/1571463/pexels-photo-1571463.jpeg?auto=compress&cs=tinysrgb&w=800',
             ]),
         ]);
 
@@ -131,8 +131,8 @@ class PropiedadSeeder extends Seeder
             'amueblado' => true,
             'estado' => 'disponible',
             'fotos' => json_encode([
-                '/images/propiedades/casa1_1.jpg',
-                '/images/propiedades/casa1_2.jpg',
+                'https://images.pexels.com/photos/2251247/pexels-photo-2251247.jpeg?auto=compress&cs=tinysrgb&w=800',
+                'https://images.pexels.com/photos/2251252/pexels-photo-2251252.jpeg?auto=compress&cs=tinysrgb&w=800',
             ]),
         ]);
 
@@ -159,8 +159,8 @@ class PropiedadSeeder extends Seeder
             'amueblado' => true,
             'estado' => 'disponible',
             'fotos' => json_encode([
-                '/images/propiedades/apartamento2_1.jpg',
-                '/images/propiedades/apartamento2_2.jpg',
+                'https://images.pexels.com/photos/1743229/pexels-photo-1743229.jpeg?auto=compress&cs=tinysrgb&w=800',
+                'https://images.pexels.com/photos/1743231/pexels-photo-1743231.jpeg?auto=compress&cs=tinysrgb&w=800',
             ]),
         ]);
 
@@ -187,7 +187,7 @@ class PropiedadSeeder extends Seeder
             'amueblado' => true,
             'estado' => 'disponible',
             'fotos' => json_encode([
-                '/images/propiedades/estudio1_1.jpg',
+                'https://images.pexels.com/photos/1457847/pexels-photo-1457847.jpeg?auto=compress&cs=tinysrgb&w=800',
             ]),
         ]);
 
@@ -214,8 +214,8 @@ class PropiedadSeeder extends Seeder
             'amueblado' => false,
             'estado' => 'disponible',
             'fotos' => json_encode([
-                '/images/propiedades/casa2_1.jpg',
-                '/images/propiedades/casa2_2.jpg',
+                'https://images.pexels.com/photos/1438832/pexels-photo-1438832.jpeg?auto=compress&cs=tinysrgb&w=800',
+                'https://images.pexels.com/photos/1438834/pexels-photo-1438834.jpeg?auto=compress&cs=tinysrgb&w=800',
             ]),
         ]);
 
@@ -242,9 +242,9 @@ class PropiedadSeeder extends Seeder
             'amueblado' => false,
             'estado' => 'disponible',
             'fotos' => json_encode([
-                '/images/propiedades/atico1_1.jpg',
-                '/images/propiedades/atico1_2.jpg',
-                '/images/propiedades/atico1_3.jpg',
+                'https://images.pexels.com/photos/1571468/pexels-photo-1571468.jpeg?auto=compress&cs=tinysrgb&w=800',
+                'https://images.pexels.com/photos/1571471/pexels-photo-1571471.jpeg?auto=compress&cs=tinysrgb&w=800',
+                'https://images.pexels.com/photos/1571467/pexels-photo-1571467.jpeg?auto=compress&cs=tinysrgb&w=800',
             ]),
         ]);
 
@@ -271,9 +271,9 @@ class PropiedadSeeder extends Seeder
             'amueblado' => true,
             'estado' => 'disponible',
             'fotos' => json_encode([
-                '/images/propiedades/villa1_1.jpg',
-                '/images/propiedades/villa1_2.jpg',
-                '/images/propiedades/villa1_3.jpg',
+                'https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=800',
+                'https://images.pexels.com/photos/1732418/pexels-photo-1732418.jpeg?auto=compress&cs=tinysrgb&w=800',
+                'https://images.pexels.com/photos/1732421/pexels-photo-1732421.jpeg?auto=compress&cs=tinysrgb&w=800',
             ]),
         ]);
 
@@ -300,7 +300,7 @@ class PropiedadSeeder extends Seeder
             'amueblado' => false,
             'estado' => 'disponible',
             'fotos' => json_encode([
-                '/images/propiedades/piso2_1.jpg',
+                'https://images.pexels.com/photos/1648768/pexels-photo-1648768.jpeg?auto=compress&cs=tinysrgb&w=800',
             ]),
         ]);
     }
