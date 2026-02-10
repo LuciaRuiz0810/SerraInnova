@@ -67,58 +67,45 @@ const routes = [
         meta: { requiresAuth: true, requiresAdmin: true }
     },
     {
-        path: '/welcome',
-        name: 'Welcome',
-        component: () => import('../views/Welcome.vue'),
-    },
-    {
         path: '/',
         name: 'Home',
         component: Home,
-        meta: { requiresAuth: true }
     },
     {
         path: '/propiedades',
         name: 'Properties',
         component: Properties,
-        meta: { requiresAuth: true }
     },
     {
         path: '/propiedades/:id',
         name: 'PropertyDetail',
         component: PropertyDetail,
         props: true,
-        meta: { requiresAuth: true }
     },
     {
         path: '/calculadora',
         name: 'Calculator',
         component: Calculator,
-        meta: { requiresAuth: true }
     },
     {
         path: '/nosotros',
         name: 'About',
         component: About,
-        meta: { requiresAuth: true }
     },
     {
         path: '/agentes',
         name: 'Agents',
         component: Agents,
-        meta: { requiresAuth: true }
     },
     {
         path: '/servicios',
         name: 'Services',
         component: () => import('../views/Services.vue'),
-        meta: { requiresAuth: true }
     },
     {
         path: '/contacto',
         name: 'Contacto',
         component: () => import('../views/Contacto.vue'),
-        meta: { requiresAuth: true }
     },
     {
         path: '/login',
@@ -158,19 +145,10 @@ const router = createRouter({
 // Guard de navegación
 router.beforeEach((to, from, next) => {
     const user = JSON.parse(localStorage.getItem('user') || 'null');
-    const guestOnlyRoutes = ['Welcome', 'Login', 'Register'];
 
-    // Si el usuario está autenticado y trata de entrar a Welcome, Login o Register -> Redirigir a Home
-    if (user && guestOnlyRoutes.includes(to.name)) {
+    // Si el usuario está autenticado y trata de entrar a Login o Register -> Redirigir a Home
+    if (user && (to.name === 'Login' || to.name === 'Register')) {
         next('/');
-    }
-    // Si la ruta requiere auth y no hay usuario -> Redirigir a Welcome
-    else if (to.meta.requiresAuth && !user) {
-        next('/welcome');
-    }
-    // Si un invitado intenta entrar a cualquier ruta no definida como pública (protección extra)
-    else if (!user && !guestOnlyRoutes.includes(to.name)) {
-        next('/welcome');
     }
     // Si requiere ser Admin y no lo es
     else if (to.meta.requiresAdmin && user?.tipo_usuario !== 'administrador') {
@@ -179,6 +157,10 @@ router.beforeEach((to, from, next) => {
     // Si la ruta requiere ser agente y el usuario no lo es
     else if (to.meta.requiresAgente && user?.tipo_usuario !== 'agente') {
         next('/');
+    }
+    // Si la ruta requiere autenticación (Profile, SellProperty) y no hay usuario -> Redirigir a Login
+    else if (to.meta.requiresAuth && !user) {
+        next('/login');
     }
     // Permitir acceso
     else {
