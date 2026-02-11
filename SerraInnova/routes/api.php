@@ -49,6 +49,7 @@ Route::middleware('auth:sanctum')->group(function () {
 Route::prefix('propiedades')->group(function () {
     Route::get('/', [PropiedadController::class, 'index']);
     Route::get('/featured', [PropiedadController::class, 'featured']);
+    Route::get('/ciudades', [PropiedadController::class, 'getCiudades']);
     Route::get('/{id}', [PropiedadController::class, 'show']);
 });
 

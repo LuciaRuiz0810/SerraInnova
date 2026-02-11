@@ -297,5 +297,23 @@ class PropiedadController extends Controller
 
          return response()->json(['message' => 'Propiedad eliminada correctamente']);
     }
+
+    /**
+     * Obtener lista de ciudades únicas con propiedades disponibles.
+     */
+    public function getCiudades(): JsonResponse
+    {
+        $ciudades = Propiedad::where(function($q) {
+                $q->where('estado', 'disponible')
+                  ->orWhere('estado', 'reservado');
+            })
+            ->whereNotNull('ciudad')
+            ->distinct()
+            ->pluck('ciudad')
+            ->sort()
+            ->values();
+
+        return response()->json($ciudades);
+    }
 }
 

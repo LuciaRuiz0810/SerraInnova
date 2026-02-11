@@ -43,7 +43,10 @@
                             <span class="text-[10px] uppercase font-bold tracking-wider text-leaf">Localización</span>
                             <div class="flex items-center gap-2 border-2 border-leaf/20 rounded-xl px-4 py-3 bg-background-light dark:bg-background-dark/50 hover:border-primary/40 transition-all duration-300 shadow-sm hover:shadow-md">
                                 <span class="material-symbols-outlined text-leaf text-sm">location_on</span>
-                                <input v-model="filters.ubicacion" class="bg-transparent border-none p-0 text-sm font-semibold text-forest dark:text-white focus:ring-0 w-full placeholder:text-white placeholder:font-normal" placeholder="¿Dónde buscas?" type="text"/>
+                                <select v-model="filters.ubicacion" class="bg-transparent border-none p-0 text-sm font-semibold text-forest dark:text-white focus:ring-0 w-full appearance-none cursor-pointer">
+                                    <option value="" class="bg-white dark:bg-gray-800 text-forest dark:text-white font-semibold">¿Dónde buscas?</option>
+                                    <option v-for="ciudad in ciudades" :key="ciudad" :value="ciudad" class="bg-white dark:bg-gray-800 text-forest dark:text-white font-semibold">{{ ciudad }}</option>
+                                </select>
                             </div>
                         </div>
 
@@ -290,12 +293,14 @@ const router = useRouter();
 
 const filters = reactive({
     tipo: '',
+    operacion: 'comprar',
     ubicacion: '',
-    operacion: 'venta'
+    tipo: ''
 });
 
 const featuredProperties = ref([]);
-const loading = ref(true);
+const loading = ref(false);
+const ciudades = ref([]);
 const user = ref(null);
 
 onMounted(() => {
@@ -371,7 +376,17 @@ const search = () => {
     });
 };
 
+const fetchCiudades = async () => {
+    try {
+        const response = await axios.get('/propiedades/ciudades');
+        ciudades.value = response.data;
+    } catch (error) {
+        console.error('Error cargando ciudades', error);
+    }
+};
+
 onMounted(() => {
+    fetchCiudades();
     fetchFeaturedProperties();
 });
 </script>

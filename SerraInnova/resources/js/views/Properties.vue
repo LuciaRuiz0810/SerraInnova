@@ -18,9 +18,7 @@
                             <span class="material-symbols-outlined text-leaf text-sm">location_on</span>
                             <select v-model="filters.ubicacion" class="bg-transparent border-none p-0 text-sm focus:ring-0 w-full appearance-none text-forest font-bold cursor-pointer">
                                 <option value="">Todas las zonas</option>
-                                <option value="Valencia">Valencia Centro</option>
-                                <option value="Ruzafa">Ruzafa</option>
-                                <option value="Vella">Ciutat Vella</option>
+                                <option v-for="ciudad in ciudades" :key="ciudad" :value="ciudad">{{ ciudad }}</option>
                             </select>
                         </div>
                     </div>
@@ -162,6 +160,7 @@ import { useRoute, useRouter } from 'vue-router';
 
 const propiedades = ref([]);
 const loading = ref(true);
+const ciudades = ref([]);
 const route = useRoute();
 const router = useRouter();
 
@@ -257,7 +256,17 @@ const getCoverImage = (propiedad) => {
     return 'https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=800';
 };
 
+const fetchCiudades = async () => {
+    try {
+        const response = await axios.get('/propiedades/ciudades');
+        ciudades.value = response.data;
+    } catch (error) {
+        console.error('Error cargando ciudades', error);
+    }
+};
+
 onMounted(() => {
+    fetchCiudades();
     fetchProperties();
 });
 </script>
