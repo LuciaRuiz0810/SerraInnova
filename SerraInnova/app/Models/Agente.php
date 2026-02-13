@@ -29,7 +29,7 @@ class Agente extends Model
         'ventas_totales' => 'integer',
     ];
 
-    // Relaciones
+
     public function usuario(): BelongsTo
     {
         return $this->belongsTo(Usuario::class, 'id_usuario', 'id_usuario');

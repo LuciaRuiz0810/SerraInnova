@@ -30,7 +30,7 @@ class Usuario extends Authenticatable
         'fecha_registro' => 'datetime',
     ];
 
-    // Relaciones
+
     public function cliente(): HasOne
     {
         return $this->hasOne(Cliente::class, 'id_usuario', 'id_usuario');

@@ -23,13 +23,12 @@ class Articulo extends Model
         'fecha_publicacion' => 'datetime',
     ];
 
-    // Relación con el autor
+
     public function autor()
     {
         return $this->belongsTo(Usuario::class, 'autor_id', 'id_usuario');
     }
 
-    // Accessor para la fecha formateada
     public function getFechaFormateadaAttribute()
     {
         return $this->fecha_publicacion?->format('d/m/Y');

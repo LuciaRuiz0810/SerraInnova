@@ -32,7 +32,7 @@ class CaracteristicaSostenible extends Model
         'maderas_certificadas' => 'boolean',
     ];
 
-    // Relaciones
+
     public function propiedad(): BelongsTo
     {
         return $this->belongsTo(Propiedad::class, 'propiedad_id', 'id_propiedad');

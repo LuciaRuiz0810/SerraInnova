@@ -10,24 +10,20 @@ use Illuminate\Support\Facades\Hash;
 
 class AdminUserController extends Controller
 {
-    /**
-     * Listar usuarios.
-     */
+
     public function index(): JsonResponse
     {
-        $usuarios = Usuario::all(); // Removed latest('fecha_registro') to avoid SQL errors if column missing
+        $usuarios = Usuario::all(); 
         return response()->json($usuarios);
     }
 
-    /**
-     * Crear usuario.
-     */
+
     public function store(Request $request): JsonResponse
     {
         $request->validate([
             'email' => 'required|email|unique:usuarios,email',
             'password' => 'required|string|min:6',
-            'tipo_usuario' => 'required|in:comprador,vendedor,administrador', // 'agente' should use Agent CRUD ideally, but admin can do it here too basically
+            'tipo_usuario' => 'required|in:comprador,vendedor,administrador', 
             'activo' => 'boolean'
         ]);
 
@@ -41,18 +37,14 @@ class AdminUserController extends Controller
         return response()->json(['message' => 'Usuario creado', 'usuario' => $usuario], 201);
     }
 
-    /**
-     * Ver usuario.
-     */
+
     public function show($id): JsonResponse
     {
         $usuario = Usuario::findOrFail($id);
         return response()->json($usuario);
     }
 
-    /**
-     * Actualizar usuario.
-     */
+
     public function update(Request $request, $id): JsonResponse
     {
         $usuario = Usuario::findOrFail($id);
@@ -74,9 +66,7 @@ class AdminUserController extends Controller
         return response()->json(['message' => 'Usuario actualizado', 'usuario' => $usuario]);
     }
 
-    /**
-     * Eliminar usuario.
-     */
+
     public function destroy($id): JsonResponse
     {
         $usuario = Usuario::findOrFail($id);

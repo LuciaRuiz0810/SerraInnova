@@ -35,7 +35,7 @@ class Propiedad extends Model
         'amueblado',
         'estado',
         'fotos',
-        // Campos de sostenibilidad
+
         'etiqueta_energetica',
         'huella_carbono_anual',
         'aislamiento_termico',
@@ -46,7 +46,7 @@ class Propiedad extends Model
         'certificacion_leed',
         'certificacion_passivhaus',
         'ahorro_co2_estimado',
-        // Documentación
+
         'certificado_energetico_pdf',
         'otros_documentos',
     ];
@@ -64,7 +64,7 @@ class Propiedad extends Model
         'amueblado' => 'boolean',
         'fecha_publicacion' => 'datetime',
         'fotos' => 'array',
-        // Campos de sostenibilidad
+
         'huella_carbono_anual' => 'decimal:2',
         'ahorro_co2_estimado' => 'decimal:2',
         'aislamiento_termico' => 'array',
@@ -77,7 +77,7 @@ class Propiedad extends Model
         'otros_documentos' => 'array',
     ];
 
-    // Relaciones
+
     public function agente(): BelongsTo
     {
         return $this->belongsTo(Agente::class, 'id_agente', 'id_agente');
@@ -90,13 +90,12 @@ class Propiedad extends Model
 
 
 
-    // Scopes
+
     public function scopeDisponibles($query)
     {
         return $query->where('estado', 'disponible');
     }
 
-    // Accessors
     public function getCertificacionColorAttribute()
     {
         $colors = [

@@ -38,7 +38,7 @@ class Contrato extends Model
         'fecha_actualizacion' => 'datetime',
     ];
 
-    // Relaciones
+
     public function propiedad(): BelongsTo
     {
         return $this->belongsTo(Propiedad::class, 'id_propiedad', 'id_propiedad');

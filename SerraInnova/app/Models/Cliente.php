@@ -27,7 +27,7 @@ class Cliente extends Model
         'fecha_nacimiento' => 'date',
     ];
 
-    // Relaciones
+
     public function usuario(): BelongsTo
     {
         return $this->belongsTo(Usuario::class, 'id_usuario', 'id_usuario');
