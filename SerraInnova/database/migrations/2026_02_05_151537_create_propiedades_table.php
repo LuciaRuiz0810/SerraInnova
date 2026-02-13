@@ -34,6 +34,8 @@ return new class extends Migration
             $table->boolean('amueblado')->default(false);
             $table->enum('estado', ['disponible', 'reservado', 'vendido', 'alquilado'])->default('disponible');
             $table->timestamp('fecha_publicacion')->useCurrent();
+            $table->string('etiqueta_energetica', 1)->nullable();
+            $table->json('fuentes_energia')->nullable();
             $table->json('fotos')->nullable();
             
             $table->index('ciudad');

@@ -1,7 +1,7 @@
 <template>
-    <main class="organic-bg min-h-screen">
+    <main class="organic-bg min-h-screen w-full">
         <!-- Hero Section -->
-        <section class="relative px-4 pt-6 pb-16 md:px-10 lg:px-20">
+        <section class="relative w-full px-4 pt-6 pb-16 md:px-6 lg:px-20">
             <div class="mx-auto max-w-[1200px]">
                 <div class="relative min-h-[400px] flex flex-col items-center justify-center rounded-3xl overflow-hidden bg-cover bg-center p-8 shadow-2xl" 
                      style='background-image: linear-gradient(to bottom, rgba(0,0,0,0.5), rgba(13,27,18,0.8)), url("https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=1200");'>
@@ -18,7 +18,7 @@
         </section>
 
         <!-- Category Filters -->
-        <section class="px-4 pb-8 md:px-10 lg:px-20">
+        <section class="w-full px-4 pb-8 md:px-6 lg:px-20">
             <div class="mx-auto max-w-[1200px]">
                 <div class="flex flex-wrap gap-3 justify-center">
                     <button @click="categoriaSeleccionada = 'todas'" 
@@ -51,7 +51,7 @@
         </section>
 
         <!-- Articles Grid -->
-        <section class="px-4 pb-16 md:px-10 lg:px-20">
+        <section class="w-full px-4 pb-16 md:px-6 lg:px-20">
             <div class="mx-auto max-w-[1200px]">
                 <!-- Loading State -->
                 <div v-if="cargando" class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">

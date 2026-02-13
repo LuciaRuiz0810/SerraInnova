@@ -25,11 +25,24 @@
         radial-gradient(circle at 50% 50%, rgba(13, 27, 18, 0.02) 0%, transparent 50%);
 }
 
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}
+
 body {
     font-family: 'Manrope', sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    margin: 0;
+    padding: 0;
 }
+
 
 /* Premium Effects */
 .glass-effect {

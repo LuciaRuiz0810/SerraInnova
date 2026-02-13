@@ -56,24 +56,21 @@
                                 <span class="material-symbols-outlined text-leaf text-sm">home</span>
                                 <select v-model="filters.tipo" class="bg-transparent border-none p-0 text-sm font-semibold text-forest dark:text-white focus:ring-0 w-full appearance-none cursor-pointer">
                                     <option value="" class="bg-white dark:bg-gray-800 text-forest dark:text-white font-semibold">Todas las propiedades</option>
-                                    <option value="casa" class="bg-white dark:bg-gray-800 text-forest dark:text-white font-semibold">🏡 Casa</option>
-                                    <option value="apartamento" class="bg-white dark:bg-gray-800 text-forest dark:text-white font-semibold">🏢 Apartamento</option>
-                                    <option value="local" class="bg-white dark:bg-gray-800 text-forest dark:text-white font-semibold">🏪 Local Comercial</option>
-                                    <option value="terreno" class="bg-white dark:bg-gray-800 text-forest dark:text-white font-semibold">🌳 Terreno</option>
+                                    <option value="Casa" class="bg-white dark:bg-gray-800 text-forest dark:text-white font-semibold">🏡 Casa</option>
+                                    <option value="Apartamento" class="bg-white dark:bg-gray-800 text-forest dark:text-white font-semibold">🏢 Apartamento</option>
+                                    <option value="Atico" class="bg-white dark:bg-gray-800 text-forest dark:text-white font-semibold">🏙️ Ático</option>
                                 </select>
                             </div>
                         </div>
 
                         <div class="flex flex-col gap-1.5 w-full md:flex-1 md:min-w-[200px]">
-                            <span class="text-[10px] uppercase font-bold tracking-wider text-leaf">Presupuesto</span>
+                            <span class="text-[10px] uppercase font-bold tracking-wider text-leaf">Operación</span>
                             <div class="flex items-center gap-2 border-2 border-leaf/20 rounded-xl px-4 py-3 bg-background-light dark:bg-background-dark/50 hover:border-primary/40 transition-all duration-300 shadow-sm hover:shadow-md">
-                                <span class="material-symbols-outlined text-leaf text-sm">payments</span>
-                                <select class="bg-transparent border-none p-0 text-sm font-semibold text-forest dark:text-white focus:ring-0 w-full appearance-none cursor-pointer">
-                                    <option value="" class="bg-white dark:bg-gray-800 text-forest dark:text-white font-semibold">💰 Cualquier precio</option>
-                                    <option value="0-200000" class="bg-white dark:bg-gray-800 text-forest dark:text-white font-semibold">💵 Hasta 200.000€</option>
-                                    <option value="200000-400000" class="bg-white dark:bg-gray-800 text-forest dark:text-white font-semibold">💶 200.000€ - 400.000€</option>
-                                    <option value="400000-800000" class="bg-white dark:bg-gray-800 text-forest dark:text-white font-semibold">💷 400.000€ - 800.000€</option>
-                                    <option value="800000-plus" class="bg-white dark:bg-gray-800 text-forest dark:text-white font-semibold">💎 Más de 800.000€</option>
+                                <span class="material-symbols-outlined text-leaf text-sm">key</span>
+                                <select v-model="filters.operacion" class="bg-transparent border-none p-0 text-sm font-semibold text-forest dark:text-white focus:ring-0 w-full appearance-none cursor-pointer">
+                                    <option value="" class="bg-white dark:bg-gray-800 text-forest dark:text-white font-semibold">Venta y Alquiler</option>
+                                    <option value="venta" class="bg-white dark:bg-gray-800 text-forest dark:text-white font-semibold">Venta</option>
+                                    <option value="alquiler" class="bg-white dark:bg-gray-800 text-forest dark:text-white font-semibold">Alquiler</option>
                                 </select>
                             </div>
                         </div>
@@ -293,9 +290,8 @@ const router = useRouter();
 
 const filters = reactive({
     tipo: '',
-    operacion: 'comprar',
-    ubicacion: '',
-    tipo: ''
+    operacion: '',
+    ubicacion: ''
 });
 
 const featuredProperties = ref([]);
@@ -366,13 +362,15 @@ const getPropertyImage = (propiedad) => {
 };
 
 const search = () => {
+    // Solo enviar filtros que tengan valor
+    const query = {};
+    if (filters.tipo) query.tipo = filters.tipo;
+    if (filters.ubicacion) query.ubicacion = filters.ubicacion;
+    if (filters.operacion) query.operacion = filters.operacion;
+    
     router.push({ 
         name: 'Properties', 
-        query: { 
-            tipo: filters.tipo, 
-            ubicacion: filters.ubicacion,
-            operacion: filters.operacion
-        } 
+        query
     });
 };
 

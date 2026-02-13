@@ -9,7 +9,7 @@
                 </router-link>
 
             <!-- Desktop Navigation -->
-            <nav class="hidden md:flex flex-1 justify-center items-center gap-1">
+            <nav class="hidden lg:flex flex-1 justify-center items-center gap-1">
                 <!-- Páginas principales -->
                 <router-link to="/" class="px-3 py-2 text-sm font-semibold hover:text-primary transition-colors rounded-lg hover:bg-primary/5">
                     Inicio
@@ -90,14 +90,14 @@
                             Cerrar Sesión
                         </button>
                     </div>
-                    <router-link to="/perfil" class="hidden md:block size-10 rounded-full border-2 border-primary/20 bg-primary/20 flex items-center justify-center overflow-hidden hover:border-primary transition-all cursor-pointer">
+                    <router-link to="/perfil" class="hidden lg:block size-10 rounded-full border-2 border-primary/20 bg-primary/20 flex items-center justify-center overflow-hidden hover:border-primary transition-all cursor-pointer">
                         <img v-if="user.foto_perfil" :src="user.foto_perfil" alt="Perfil" class="w-full h-full object-cover">
                         <span v-else class="material-symbols-outlined text-forest">person</span>
                     </router-link>
                 </template>
                 
                 <!-- Mobile Menu Button -->
-                <button @click="toggleMenu" class="md:hidden flex items-center justify-center rounded-lg h-10 w-10 bg-primary/20 text-forest dark:text-white hover:bg-primary/30 transition-colors">
+                <button @click="toggleMenu" class="lg:hidden flex items-center justify-center rounded-lg h-10 w-10 bg-primary/20 text-forest dark:text-white hover:bg-primary/30 transition-colors">
                     <span class="material-symbols-outlined">{{ isMenuOpen ? 'close' : 'menu' }}</span>
                 </button>
             </div>
@@ -106,7 +106,7 @@
 
         <!-- Mobile Navigation Menu -->
         <transition name="mobile-menu">
-            <div v-if="isMenuOpen" class="md:hidden bg-background-light dark:bg-background-dark border-t border-leaf/10 dark:border-white/10">
+            <div v-if="isMenuOpen" class="lg:hidden bg-background-light dark:bg-background-dark border-t border-leaf/10 dark:border-white/10">
                 <nav class="flex flex-col px-6 py-4 space-y-1">
                     <!-- Páginas principales -->
                     <div class="text-xs font-bold text-leaf/60 dark:text-white/40 uppercase tracking-wider mb-2 mt-2">

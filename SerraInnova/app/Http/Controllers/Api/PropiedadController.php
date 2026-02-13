@@ -36,7 +36,8 @@ class PropiedadController extends Controller
             $query->where('etiqueta_energetica', $request->certificacion);
         }
         if ($request->has('tipo_energia') && $request->tipo_energia) {
-            $query->whereRaw('JSON_EXTRACT(fuentes_energia, "$.' . $request->tipo_energia . '") = true');
+            // Buscamos dentro del string JSON usando LIKE por compatibilidad
+            $query->where('fuentes_energia', 'LIKE', '%' . $request->tipo_energia . '%');
         }
 
         $propiedades = $query->latest('fecha_publicacion')->get();

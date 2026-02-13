@@ -45,6 +45,8 @@ class PropiedadSeeder extends Seeder
             'ascensor' => true,
             'amueblado' => true,
             'estado' => 'disponible',
+            'etiqueta_energetica' => 'B',
+            'fuentes_energia' => json_encode(['aerotermia']),
             'fotos' => json_encode([
                 'https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=800',
                 'https://images.pexels.com/photos/1457842/pexels-photo-1457842.jpeg?auto=compress&cs=tinysrgb&w=800',
@@ -73,6 +75,8 @@ class PropiedadSeeder extends Seeder
             'ascensor' => false,
             'amueblado' => false,
             'estado' => 'disponible',
+            'etiqueta_energetica' => 'A',
+            'fuentes_energia' => json_encode(['placas_solares', 'aerotermia']),
             'fotos' => json_encode([
                 'https://images.pexels.com/photos/1396122/pexels-photo-1396122.jpeg?auto=compress&cs=tinysrgb&w=800',
                 'https://images.pexels.com/photos/1396132/pexels-photo-1396132.jpeg?auto=compress&cs=tinysrgb&w=800',
@@ -102,6 +106,8 @@ class PropiedadSeeder extends Seeder
             'ascensor' => true,
             'amueblado' => false,
             'estado' => 'disponible',
+            'etiqueta_energetica' => 'A',
+            'fuentes_energia' => json_encode(['placas_solares']),
             'fotos' => json_encode([
                 'https://images.pexels.com/photos/1571460/pexels-photo-1571460.jpeg?auto=compress&cs=tinysrgb&w=800',
                 'https://images.pexels.com/photos/1571463/pexels-photo-1571463.jpeg?auto=compress&cs=tinysrgb&w=800',
@@ -130,6 +136,8 @@ class PropiedadSeeder extends Seeder
             'ascensor' => false,
             'amueblado' => true,
             'estado' => 'disponible',
+            'etiqueta_energetica' => 'C',
+            'fuentes_energia' => json_encode(['biomasa']),
             'fotos' => json_encode([
                 'https://images.pexels.com/photos/2251247/pexels-photo-2251247.jpeg?auto=compress&cs=tinysrgb&w=800',
                 'https://images.pexels.com/photos/2251252/pexels-photo-2251252.jpeg?auto=compress&cs=tinysrgb&w=800',
@@ -158,6 +166,8 @@ class PropiedadSeeder extends Seeder
             'ascensor' => true,
             'amueblado' => true,
             'estado' => 'disponible',
+            'etiqueta_energetica' => 'B',
+            'fuentes_energia' => json_encode(['aerotermia']),
             'fotos' => json_encode([
                 'https://images.pexels.com/photos/1743229/pexels-photo-1743229.jpeg?auto=compress&cs=tinysrgb&w=800',
                 'https://images.pexels.com/photos/1743231/pexels-photo-1743231.jpeg?auto=compress&cs=tinysrgb&w=800',
@@ -186,6 +196,8 @@ class PropiedadSeeder extends Seeder
             'ascensor' => true,
             'amueblado' => true,
             'estado' => 'disponible',
+            'etiqueta_energetica' => 'D',
+            'fuentes_energia' => json_encode([]),
             'fotos' => json_encode([
                 'https://images.pexels.com/photos/1457847/pexels-photo-1457847.jpeg?auto=compress&cs=tinysrgb&w=800',
             ]),
@@ -213,6 +225,8 @@ class PropiedadSeeder extends Seeder
             'ascensor' => false,
             'amueblado' => false,
             'estado' => 'disponible',
+            'etiqueta_energetica' => 'C',
+            'fuentes_energia' => json_encode(['aerotermia']),
             'fotos' => json_encode([
                 'https://images.pexels.com/photos/1438832/pexels-photo-1438832.jpeg?auto=compress&cs=tinysrgb&w=800',
                 'https://images.pexels.com/photos/1438834/pexels-photo-1438834.jpeg?auto=compress&cs=tinysrgb&w=800',
@@ -241,6 +255,8 @@ class PropiedadSeeder extends Seeder
             'ascensor' => true,
             'amueblado' => false,
             'estado' => 'disponible',
+            'etiqueta_energetica' => 'B',
+            'fuentes_energia' => json_encode(['placas_solares']),
             'fotos' => json_encode([
                 'https://images.pexels.com/photos/1571468/pexels-photo-1571468.jpeg?auto=compress&cs=tinysrgb&w=800',
                 'https://images.pexels.com/photos/1571471/pexels-photo-1571471.jpeg?auto=compress&cs=tinysrgb&w=800',
@@ -270,6 +286,8 @@ class PropiedadSeeder extends Seeder
             'ascensor' => false,
             'amueblado' => true,
             'estado' => 'disponible',
+            'etiqueta_energetica' => 'A',
+            'fuentes_energia' => json_encode(['placas_solares', 'aerotermia', 'biomasa']),
             'fotos' => json_encode([
                 'https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=800',
                 'https://images.pexels.com/photos/1732418/pexels-photo-1732418.jpeg?auto=compress&cs=tinysrgb&w=800',
@@ -299,6 +317,8 @@ class PropiedadSeeder extends Seeder
             'ascensor' => false,
             'amueblado' => false,
             'estado' => 'disponible',
+            'etiqueta_energetica' => 'E',
+            'fuentes_energia' => json_encode([]),
             'fotos' => json_encode([
                 'https://images.pexels.com/photos/1648768/pexels-photo-1648768.jpeg?auto=compress&cs=tinysrgb&w=800',
             ]),

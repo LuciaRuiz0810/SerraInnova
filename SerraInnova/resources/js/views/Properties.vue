@@ -42,10 +42,10 @@
                          <label class="block text-[10px] uppercase font-bold tracking-wider text-leaf mb-1">Operación</label>
                         <div class="flex items-center gap-2 border border-leaf/20 rounded-lg px-3 py-2 bg-background-light dark:bg-background-dark/50 hover:border-leaf/40 transition-colors">
                              <span class="material-symbols-outlined text-leaf text-sm">key</span>
-                            <select v-model="filters.operacion" class="bg-transparent border-none p-0 text-sm focus:ring-0 w-full appearance-none text-forest font-bold cursor-pointer">
-                                <option value="">Venta y Alquiler</option>
-                                <option value="venta">Venta</option>
-                                <option value="alquiler">Alquiler</option>
+                             <select v-model="filters.operacion" class="bg-transparent border-none p-0 text-sm focus:ring-0 w-full appearance-none text-forest dark:text-white font-bold cursor-pointer">
+                                <option value="" class="bg-white dark:bg-gray-800 text-forest dark:text-white font-bold">Venta y Alquiler</option>
+                                <option value="venta" class="bg-white dark:bg-gray-800 text-forest dark:text-white font-bold">Venta</option>
+                                <option value="alquiler" class="bg-white dark:bg-gray-800 text-forest dark:text-white font-bold">Alquiler</option>
                             </select>
                         </div>
                     </div>
@@ -118,7 +118,7 @@
                             >
                             <div class="absolute top-4 left-4 text-forest text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest shadow-sm"
                                  :class="propiedad.tipo_operacion === 'venta' ? 'bg-primary' : 'bg-white'">
-                                {{ propiedad.tipo_operacion }}
+                                {{ propiedad.tipo_operacion || 'Consultar' }}
                             </div>
                             <!-- Energy Badge -->
                             <div v-if="propiedad.etiqueta_energetica" 
@@ -177,16 +177,25 @@ const fetchProperties = async () => {
     loading.value = true;
     try {
         // Actualizar URL sin recargar
-        router.push({ query: { ...filters } });
+        const queryParams = {};
+        if (filters.ubicacion) queryParams.ubicacion = filters.ubicacion;
+        if (filters.tipo) queryParams.tipo = filters.tipo;
+        if (filters.operacion) queryParams.operacion = filters.operacion;
+        if (filters.certificacion) queryParams.certificacion = filters.certificacion;
+        if (filters.tipo_energia) queryParams.tipo_energia = filters.tipo_energia;
+        
+        router.push({ query: queryParams });
+
+        // Solo enviar params con valores al backend
+        const apiParams = {};
+        if (filters.ubicacion) apiParams.ubicacion = filters.ubicacion;
+        if (filters.tipo) apiParams.tipo = filters.tipo;
+        if (filters.operacion) apiParams.operacion = filters.operacion;
+        if (filters.certificacion) apiParams.certificacion = filters.certificacion;
+        if (filters.tipo_energia) apiParams.tipo_energia = filters.tipo_energia;
 
         const response = await axios.get('/propiedades', {
-            params: {
-                ubicacion: filters.ubicacion,
-                tipo: filters.tipo,
-                operacion: filters.operacion,
-                certificacion: filters.certificacion,
-                tipo_energia: filters.tipo_energia
-            }
+            params: apiParams
         });
         propiedades.value = response.data;
     } catch (error) {
