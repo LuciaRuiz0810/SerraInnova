@@ -14,7 +14,6 @@
     --color-leaf: #4c9a66;
     --color-sand: #f4f1ea;
     --color-background-light: #f8fcf9;
-    --color-background-dark: #102216;
 
     --font-family-display: 'Manrope', sans-serif;
 }
@@ -50,13 +49,6 @@ body {
     backdrop-filter: blur(20px) saturate(180%);
     -webkit-backdrop-filter: blur(20px) saturate(180%);
     border: 1px solid rgba(255, 255, 255, 0.3);
-}
-
-.glass-effect-dark {
-    background: rgba(16, 34, 22, 0.95);
-    backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .glow-primary {
